@@ -148,3 +148,37 @@ Com base nesses critérios conseguiremos evoluir para os próximos passos, defin
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 ## DDD
 Como no challange temos um objetivo muito bem definido, que é o Ganho de capital, fazendo o cálculo do imposto a ser pago a partir de um conjunto de operação, conseguimos identificar somente um domínio. Com as regras e critérios de aceite já defidos acima, o nosso próximo passo será a definição das entidades. 
+<br><br><br>
+
+|OperationsList|
+|--------------|
+|operations: List[Operation]|
+|loss: float = 0|
+|operations_total_quantity: float = 0|
+|tax_rate: float = 20.00|
+|weighted_average_price: float|
+|update_loss()|
+|update_operations_total_quantity()|
+|update_average_price()|
+<br><br>
+
+|Operation|
+|--------------|
+|type: OperationTypeEnum["buy", "sell"]|
+|unity_cost: float|
+|quantity: int|
+|tax: float = 0.00|
+<br><br>
+
+|BuyOperation(Operation)|
+|--------------|
+<br><br>
+
+|SellOperation(Operation)|
+|--------------|
+|total_value: float|
+|return: float|
+|calculate_total_value()|
+|calculate_tax()|
+|calculate_return()|
+<br><br>
