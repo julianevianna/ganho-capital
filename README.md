@@ -2,6 +2,9 @@
 
 ## **Contexto**
 Exercício com o objetivo de implementar um programa de linha de comando que calcula o imposto a ser pago sobre lucros ou prejuízos de operações no mercado financiero de ações.
+<br><br><br>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## **Regras e Critérios de Aceite**
 Iremos começar definindo as regras e critérios de aceite do nosso challange, baseado no documento de especificações recebidos. 
@@ -13,61 +16,135 @@ Para a definição do nosso caso de uso, utilizaremos o User Story, que utiliza 
 Para a definição dos critérios de aceite identificados, usaremos um formato conhecido como **Gherkin**, que utiliza palavras-chave como **"Dado"**, **"Quando"** e **"Então"** para descrever o estado inicial, a ação realizada e o resultado esperado de um cenário.
 
 Com base nesses critérios conseguiremos evoluir para os próximos passos, definindo nossas entidades e montando os testes em cima dessa documentação.
+<br><br><br>
 
-### **JOB STORY**
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+### **Regras e critérios de aceite**
+<br>
+
+**JOB STORY**
+
 **Como** um usuário da CLI
 
 **Eu quero** incluir uma lista de operações do mercado financeiro
 
-**Para que** eu receba as informações de imposto a serem pagas para cada operação
+**Para que** eu receba as informações de imposto a ser pago para cada operação
+<br><br>
 
-### **CT01 - Imposto sobre operação de compra**
+
+
+**CT01 - Formato Entrada**
+
+**Dado** uma entrada de operações
+
+**Quando** ela for ser incluida na CLI
+
+**Então** ele deverá ser uma lista 
+
+**E** apresentar o formato JSON 
+
+**E** conter os seguintes campos: 
+- operation *(Tipo da operação: buy, sell)*
+- unit-cost *(Preço unitário da ação)* 
+- quantity *(Quantidade de ações negociadas)*
+<br><br>
+
+
+**CT02 - Formato Saída**
+
+**Dado** uma lista de operações processadas
+
+**Quando** for dado o retorno para o usuário
+
+**Então** ele deverá ser uma lista 
+
+**E** apresentar o formato JSON
+
+**E** conter o seguinte campo:
+- tax *(Valor do imposto pago em uma operação)*
+<br><br>
+
+
+
+**CT03 - Entrada X Saída**
+
+**Dado** uma lista de operações
+
+**Quando** for passada uma entrada com **n** operações no formato definido
+
+**Então** sua saída deverá ser uma lista de **n** valores de imposto, cada um calculado para cada operação de entrada
+<br><br>
+
+
+
+**CT04 - Imposto sobre operação de compra**
+
 **Dado** uma operação de compra
 
-**Quando** ela for incluída
+**Quando** ela for analisada
 
 **Então** não haverá imposto sobre a operação
+<br><br>
 
-### **CT02 - Atualização de preço médio ponderado**
-**Dado** uma operação
 
-**Quando** ela for do tipo compra
+
+**CT05 - Atualização de preço médio ponderado**
+
+**Dado** uma operação de compra
+
+**Quando** ela for analisada
 
 **Então** o preço médio ponderado de compra deverá ser atualizado
+<br><br>
 
-### **CT03 - Imposto sobre operação de venda**
+
+
+**CT06 - Imposto sobre operação de venda**
+
 **Dado** uma operação de venda
 
-**Quando** o valor da operação for maior que R$20.000,00 reais **E** for uma operação que gerou lucro
+**Quando** o valor da operação for maior que R$20.000,00 reais 
+
+**E** for uma operação que gerou lucro
 
 **Então** existirá cobrança de 20% de imposto sobre o lucro da operação
+<br><br>
 
-### **CT04 - Prejuízo sobre operação de venda**
+
+**CT07 - Prejuízo sobre operação de venda**
+
 **Dado** uma operação de venda
 
 **Quando** a operação resultar em prejuízo
 
 **Então** o prejuízo deverá ser subtraido dos lucros das operações seguintes, até que ele seja deduzido por completo
+<br><br>
 
 
-### **CT05 - Lucro X Prejuízo em operações de venda**
+
+**CT08 - Lucro X Prejuízo em operações de venda**
+
 **Dado** uma operação de venda
 
 **Quando** a operação resultar em lucro após uma operação que resultou prejuízo
 
-**Então** o prejuízo deverá ser subtraido do lucro obtido **E** se o resultado ainda for positivo o imposto de 20% deve ser aplicado **OU** se o resultado for zero o imposto será zero **OU** se o resultado for negativo o imposto será zero e o resto do prejuízo será subtraído da próxima operação com lucro
+**Então** o prejuízo deverá ser subtraido do lucro obtido 
+
+**E** se o resultado ainda for positivo o imposto de 20% deve ser aplicado 
+
+**OU** se o resultado for zero o imposto será zero 
+
+**OU** se o resultado for negativo o imposto será zero e o resto do prejuízo será subtraído da próxima operação com lucro
+<br><br>
 
 
-### **CT06 - Entrada X Saída**
-**Dado** um usuário incluíndo lista de operações
+**CT09 - Arredondamento de casas decimais**
 
-**Quando** uma entrada tiver o formato JSON, contendo os valores de operation(Tipo da operação (buy, sell)), unit-cost(Preço unitário da ação) e quantity(Quantidade de ações negociadas)
-
-**Então** sua saída deverá ser uma lista em formato JSON, contento o valor tax(Valor do imposto pago em uma operação)
-
-### **CT06 - Arredondamento de casas decimais**
 **Dado** um valor em moeda
 
 **Quando** tiver algum valor quebrado
 
 **Então** ele deverá ser arredondado com duas casas decimais
+
+
+<br><br><br>
