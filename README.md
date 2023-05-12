@@ -46,6 +46,7 @@ Com base nesses critérios conseguiremos evoluir para os próximos passos, defin
 <br><br>
 
 
+
 **CT02 - Formato Saída**
 
 **Dado** uma lista de operações processadas
@@ -95,7 +96,20 @@ Com base nesses critérios conseguiremos evoluir para os próximos passos, defin
 
 
 
-**CT06 - Imposto sobre operação de venda**
+**CT06 - Calculo preço médio ponderado**
+
+**Dado** uma nova operação de compra
+
+**Quando** o preço médio ponderado for ser atualizado
+
+**Então** ele severá seguir a regra: 
+- nova-media-ponderada = [(quantidade-de-acoes-atual * media-ponderadaatual) + (quantidade-de-acoes-compradas * valor-de-compra)] / (quantidade-de-acoes-atual +
+quantidade-de-acoes-compradas)
+<br><br>
+
+
+
+**CT07 - Imposto sobre operação de venda**
 
 **Dado** uma operação de venda
 
@@ -107,7 +121,8 @@ Com base nesses critérios conseguiremos evoluir para os próximos passos, defin
 <br><br>
 
 
-**CT07 - Prejuízo sobre operação de venda**
+
+**CT08 - Prejuízo sobre operação de venda**
 
 **Dado** uma operação de venda
 
@@ -118,7 +133,7 @@ Com base nesses critérios conseguiremos evoluir para os próximos passos, defin
 
 
 
-**CT08 - Lucro X Prejuízo em operações de venda**
+**CT09 - Lucro X Prejuízo em operações de venda**
 
 **Dado** uma operação de venda
 
@@ -134,13 +149,15 @@ Com base nesses critérios conseguiremos evoluir para os próximos passos, defin
 <br><br>
 
 
-**CT09 - Arredondamento de casas decimais**
+
+**CT10 - Arredondamento de casas decimais**
 
 **Dado** um valor em moeda
 
 **Quando** tiver algum valor quebrado
 
 **Então** ele deverá ser arredondado com duas casas decimais
+
 
 
 <br><br><br>
