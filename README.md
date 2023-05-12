@@ -18,10 +18,6 @@ Para a definição dos critérios de aceite identificados, usaremos um formato c
 Com base nesses critérios conseguiremos evoluir para os próximos passos, definindo nossas entidades e montando os testes em cima dessa documentação.
 <br><br><br>
 
--------------------------------------------------------------------------------------------------------------------------------------------------------
-### **Regras e critérios de aceite**
-<br>
-
 **JOB STORY**
 
 **Como** um usuário da CLI
@@ -148,3 +144,7 @@ Com base nesses critérios conseguiremos evoluir para os próximos passos, defin
 
 
 <br><br><br>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+## DDD
+Como no challange temos um objetivo muito bem definido, que é o Ganho de capital, fazendo o cálculo do imposto a ser pago a partir de um conjunto de operação, conseguimos identificar somente um domínio. Com as regras e critérios de aceite já defidos acima, o nosso próximo passo será a definição das entidades. 
