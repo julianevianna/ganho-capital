@@ -164,19 +164,21 @@ quantidade-de-acoes-compradas)
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 ## DDD
-Como no challange temos um objetivo muito bem definido, que é o Ganho de capital, fazendo o cálculo do imposto a ser pago a partir de um conjunto de operação, conseguimos identificar somente um domínio. Com as regras e critérios de aceite já defidos acima, o nosso próximo passo será a definição das entidades. 
+Como no challange temos um objetivo muito bem definido, que é o Ganho de capital, fazendo o cálculo do imposto a ser pago a partir de um conjunto de operação, conseguimos identificar somente um domínio. Com as regras e critérios de aceite já defidos acima, o nosso próximo passo será a definição das entidades e os objetos de valor. 
 <br><br><br>
+
+### **Entidades**
+- Uma Entidade representa um objeto do domínio com identidade própria e um ciclo de vida distinto
+- Ela é definida por suas características e comportamentos, além de ter um identificador exclusivo.
+<br><br>
 
 |OperationsList|
 |--------------|
-|operations: List[Operation]|
-|loss: float = 0|
-|operations_total_quantity: float = 0|
-|tax_rate: float = 20.00|
+|operations: List [OperationCapitalGain]|
+|tax_rate: float|
 |weighted_average_price: float|
-|update_loss()|
-|update_operations_total_quantity()|
-|update_average_price()|
+
+Essa é a entidade que irá tratar do conjunto de operações realizados a cada entrada, contendo todas as informações passadas na entranda, assim como os seus impostos calculados.
 <br><br>
 
 |Operation|
@@ -184,18 +186,56 @@ Como no challange temos um objetivo muito bem definido, que é o Ganho de capita
 |type: OperationTypeEnum["buy", "sell"]|
 |unity_cost: float|
 |quantity: int|
-|tax: float = 0.00|
+
+Nessa entidade temos uma generalização de operação, contendo os dados básicos para a existência dela. Essa generalização foi pensada de modo a classe de operação poder ser extensível a outros tipos de utilização.
 <br><br>
 
-|BuyOperation(Operation)|
+|OperationCapitalGain(Operation)|
 |--------------|
+|operations_total_quantity: int = 0|
+
+Nessa entidade temos uma filha de operação, específica para utilização para o ganho de capital.
 <br><br>
 
-|SellOperation(Operation)|
+|BuyOperationCapitalGain(OperationCapitalGain)|
 |--------------|
+
+Nessa entidade temos uma filha de operação de ganho de capital, específica para compra, podendo incluir especificações de compra caso necessário sem alteração das classes mães.
+<br><br>
+
+|sellOperationCapitalGain(OperationCapitalGain)|
+|--------------|
+|return: Return|
+|tax: Tax|
 |total_value: float|
+
+Nessa entidade temos uma filha de operação de ganho de capital, específica para venda, podendo incluir especificações de compra caso necessário sem alteração das classes mães.
+<br><br>
+
+### **Objetos de valor**
+- Um Objeto de Valor representa um conceito ou um valor no domínio que é identificado por suas propriedades.
+- Ele é caracterizado por seus atributos e não possui uma identidade própria.
+- Os Objetos de Valor são imutáveis, ou seja, uma vez criados, seus atributos não são alterados.
+- Geralmente, os Objetos de Valor são pequenos e são usados para encapsular um conjunto de propriedades relacionadas.
+<br><br>
+
+
+|Return|
+|--------------|
+|average_price: float|
+|quantity: float|
+|total_value: float|
+|loss: Optional[float]|
 |return: float|
-|calculate_total_value()|
-|calculate_tax()|
-|calculate_return()|
+
+Nesse objeto de valor, temos uma generalização para o resultado de uma operação, podendo ser positivo (Lucro) ou negativo (Prejuízo) a partir das informações de preço médio, quantidade, valor total da operação, prejuízo (caso exista) e o valor do resultado. Foi criado como objeto de valor a fim de ser uma propriedade padrão para resultado idependentemente de sua aplicação.
+<br><br>
+
+|Tax|
+|--------------|
+|value: float|
+|tax_rate: float|
+|tax_value: float = self.value * self.tax_rate|
+
+Nesse objeto de valor, temos uma generalização para o imposto, a partir das informações de valor, percentagem do imposto e o valor de imposto resultante. Foi criado como objeto de valor a fim de ser uma propriedade padrão para imposto idependentemente de sua aplicação.
 <br><br>
