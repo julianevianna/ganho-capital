@@ -28,3 +28,6 @@ jobs:
 
     - name: Run flake8 check
       run: poetry run flake8 --config=.flake8 --count .
+
+    - name: Run mypy check
+      run: poetry run mypy system
