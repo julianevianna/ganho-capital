@@ -7,9 +7,9 @@ Exercício com o objetivo de implementar um programa de linha de comando que cal
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## **Regras e Critérios de Aceite**
-Iremos começar definindo as regras e critérios de aceite do nosso challange, baseado no documento de especificações recebidos. 
+Iremos começar definindo as regras e critérios de aceite do nosso challange, baseado no documento de especificações recebidos.
 
-A seguir iremos usar uma metodologia chamada BDD(Behavior-Driven Development), que é baseada nos princípios do TDD, porém com um foco maior no comeportamento do sistema do que nos testes. 
+A seguir iremos usar uma metodologia chamada BDD(Behavior-Driven Development), que é baseada nos princípios do TDD, porém com um foco maior no comeportamento do sistema do que nos testes.
 
 Para a definição do nosso caso de uso, utilizaremos o User Story, que utiliza uma estrutura simples: **"Como"**, **"Eu quero"**, **"Para que"**, para descrever a quem, ação e o resultado.
 
@@ -35,13 +35,13 @@ Com base nesses critérios conseguiremos evoluir para os próximos passos, defin
 
 **Quando** ela for ser incluida na CLI
 
-**Então** ele deverá ser uma lista 
+**Então** ele deverá ser uma lista
 
-**E** apresentar o formato JSON 
+**E** apresentar o formato JSON
 
-**E** conter os seguintes campos: 
+**E** conter os seguintes campos:
 - operation *(Tipo da operação: buy, sell)*
-- unit-cost *(Preço unitário da ação)* 
+- unit-cost *(Preço unitário da ação)*
 - quantity *(Quantidade de ações negociadas)*
 <br><br>
 
@@ -53,7 +53,7 @@ Com base nesses critérios conseguiremos evoluir para os próximos passos, defin
 
 **Quando** for dado o retorno para o usuário
 
-**Então** ele deverá ser uma lista 
+**Então** ele deverá ser uma lista
 
 **E** apresentar o formato JSON
 
@@ -102,7 +102,7 @@ Com base nesses critérios conseguiremos evoluir para os próximos passos, defin
 
 **Quando** o preço médio ponderado for ser atualizado
 
-**Então** ele severá seguir a regra: 
+**Então** ele severá seguir a regra:
 - nova-media-ponderada = [(quantidade-de-acoes-atual * media-ponderadaatual) + (quantidade-de-acoes-compradas * valor-de-compra)] / (quantidade-de-acoes-atual +
 quantidade-de-acoes-compradas)
 <br><br>
@@ -113,7 +113,7 @@ quantidade-de-acoes-compradas)
 
 **Dado** uma operação de venda
 
-**Quando** o valor da operação for maior que R$20.000,00 reais 
+**Quando** o valor da operação for maior que R$20.000,00 reais
 
 **E** for uma operação que gerou lucro
 
@@ -139,11 +139,11 @@ quantidade-de-acoes-compradas)
 
 **Quando** a operação resultar em lucro após uma operação que resultou prejuízo
 
-**Então** o prejuízo deverá ser subtraido do lucro obtido 
+**Então** o prejuízo deverá ser subtraido do lucro obtido
 
-**E** se o resultado ainda for positivo o imposto de 20% deve ser aplicado 
+**E** se o resultado ainda for positivo o imposto de 20% deve ser aplicado
 
-**OU** se o resultado for zero o imposto será zero 
+**OU** se o resultado for zero o imposto será zero
 
 **OU** se o resultado for negativo o imposto será zero e o resto do prejuízo será subtraído da próxima operação com lucro
 <br><br>
@@ -164,7 +164,7 @@ quantidade-de-acoes-compradas)
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 ## **DDD**
-Como no challange temos um objetivo muito bem definido, que é o Ganho de capital, fazendo o cálculo do imposto a ser pago a partir de um conjunto de operação, conseguimos identificar somente um domínio. Com as regras e critérios de aceite já defidos acima, o nosso próximo passo será a definição das entidades e os objetos de valor. 
+Como no challange temos um objetivo muito bem definido, que é o Ganho de capital, fazendo o cálculo do imposto a ser pago a partir de um conjunto de operação, conseguimos identificar somente um domínio. Com as regras e critérios de aceite já defidos acima, o nosso próximo passo será a definição das entidades e os objetos de valor.
 <br><br><br>
 
 ### **Entidades**
