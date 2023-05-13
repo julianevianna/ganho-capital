@@ -1,0 +1,16 @@
+version: '2.2'
+
+services:
+
+  cli:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: ["sh", "-c", "python -m system"]
+    restart: always
+    volumes:
+    - .:/code
+    environment:
+    - INPUT_FILE=/code/input.txt
+    stdin_open: true
+    tty: true
