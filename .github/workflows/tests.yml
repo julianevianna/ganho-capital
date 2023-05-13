@@ -10,19 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout código-fonte
-      uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-    - name: Configurar ambiente Python
+    - name: Set up Python
       uses: actions/setup-python@v3
       with:
         python-version: 3.8
 
-    - name: Instalar Poetry
-      run: pip install poetry
+    - name: Install Poetry
+      run: curl -sSL https://install.python-poetry.org | python3 -
 
-    - name: Instalar dependências do projeto
+    - name: Install project dependencies
       run: poetry install
 
-    - name: Executar testes com pytest
+    - name: Run tests
       run: poetry run pytest
