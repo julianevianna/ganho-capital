@@ -163,7 +163,7 @@ quantidade-de-acoes-compradas)
 <br><br><br>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
-## DDD
+## **DDD**
 Como no challange temos um objetivo muito bem definido, que é o Ganho de capital, fazendo o cálculo do imposto a ser pago a partir de um conjunto de operação, conseguimos identificar somente um domínio. Com as regras e critérios de aceite já defidos acima, o nosso próximo passo será a definição das entidades e os objetos de valor. 
 <br><br><br>
 
@@ -239,3 +239,10 @@ Nesse objeto de valor, temos uma generalização para o resultado de uma operaç
 
 Nesse objeto de valor, temos uma generalização para o imposto, a partir das informações de valor, percentagem do imposto e o valor de imposto resultante. Foi criado como objeto de valor a fim de ser uma propriedade padrão para imposto idependentemente de sua aplicação.
 <br><br>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+## **Bibliotecas**
+
+### **Poetry**
+Poetry é uma ferramenta para gerenciamento de pacotes e dependências para Python. Iremos utiliza-la para facilitar a adição de novas depências, assim como o controle de suas versões.
+

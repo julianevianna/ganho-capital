@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "ganho-capital"
+version = "0.1.0"
+description = "Projeto com o objetivo de implementar um programa de linha de comando que calcula o imposto a ser pago sobre lucros ou prejuizos de operacoes no mercado financeiro de acoes"
+readme = "README.md"
+packages = [{include = "ganho_capital"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
