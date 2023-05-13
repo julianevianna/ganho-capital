@@ -246,3 +246,6 @@ Nesse objeto de valor, temos uma generalização para o imposto, a partir das in
 ### **Poetry**
 Poetry é uma ferramenta para gerenciamento de pacotes e dependências para Python. Iremos utiliza-la para facilitar a adição de novas depências, assim como o controle de suas versões.
 
+### **Pytest**
+Framework para escrita de testes unitários em python.
+
