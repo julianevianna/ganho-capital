@@ -301,3 +301,48 @@ A arquitetura limpa é composta por várias camadas, que geralmente incluem:
 A escolha da arquitetura limpa foi pensada por dois motivos.
 - Por ela ser uma arquitetura com um fraco acoplamento entre as camadas, ela facilita a manutenção e também a escalabilidade do sistema, por esse desafio poder ser estendido futuramente, ela se faz uma boa opção, permitindo uma facilidade para inclusão de novas features.
 - Também foi escolhida por ser a arquitetura que estou utilizando atualmente, agilizando assim o desenvolvimento baseado no prazo de entrega do projeto.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+## **Dockerização**
+
+O projeto foi dockerizado, com o objetivo de facilitar a utilização em qualquer máquina.
+
+Temos um único container (*cli*), que é utilizado para suir a aplicação baseada no docker-compose e um Dockerfile que faz todas as configurações de ambiente para o projeto.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+## **Como rodar o projeto**
+Para rodar o projeto, é necessário ter o docker instalado na sua máquina, caso não tenha, siga as instruções dos links:
+- **Ubuntu:** [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+- **Mac:** [Install Docker Engine on Mac](https://docs.docker.com/desktop/install/mac-install/)
+- **Windows:** [Install Docker Engine on Windows](https://docs.docker.com/desktop/install/windows-install/)
+
+### **Com arquivo**
+Para rodar o projeto utilizando um arquivo, inclua o arquivo na root do projeto e adicione o nome do aquivo em uma variável de ambiente chamada INPUT_FILE dentro do docker-compose.yml.
+
+Em seguida rode os seguintes comandos:
+```
+docker compose up -d --build
+docker compose run cli
+```
+
+Se a sua versão do docker-compose for mais antiga, use:
+```
+docker-compose up -d --build
+docker-compose run cli
+```
+
+
+### **Com input manual**
+Para rodar o projeto fazendo input manualmente, exclua a sessão **environment** dentro do docker-compose.yml.
+
+Em seguida rode os seguintes comandos:
+```
+docker compose up -d --build
+docker compose run cli
+```
+
+Se a sua versão do docker-compose for mais antiga, use:
+```
+docker-compose up -d --build
+docker-compose run cli
+```
