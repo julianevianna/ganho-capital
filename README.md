@@ -242,6 +242,7 @@ Nesse objeto de valor, temos uma generalização para o imposto, a partir das in
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 ## **Bibliotecas**
+As biblioticas e dependencias usadas no projeto em sua maioria, serão para teste e para linter, afim de garantir uma maior qualidade de código, porém conforme solicitado durante a implementação da solução do desafio será utilizado o mínimo de bibliotecas possíveis, com o objetivo de deixar claro o raciocínio por tras da lógica.
 
 ### **Poetry**
 Poetry é uma ferramenta para gerenciamento de pacotes e dependências para Python. Iremos utiliza-la para facilitar a adição de novas depências, assim como o controle de suas versões.
@@ -252,25 +253,51 @@ Framework para escrita de testes unitários em python.
 ### **Covarage**
 O Coverage.py é uma ferramenta para medir a cobertura de código de programas em Python.
 
-<br><br><br>
 
--------------------------------------------------------------------------------------------------------------------------------------------------------
-## **Pre-commit**
+### **Pre-commit**
 
-### **Black**
+- **Black:**
 Formatador de código para python
 
-### **Autoflake**
+- **Autoflake:**
 Remove imports e variaveis que não foram utilizados
 
-### **Isort**
+- **Isort:**
 Organiza os imports por ordem alfabética e automaticamente separa em seções e por tipo
 
-### **Flake8**
+- **Flake8:**
 Validador de Pep8 (Style Guide para códigos em python)
 
-### **Mypy**
+- **Mypy:**
 Validador de tipagem
 
-### **Yesqa**
+- **Yesqa:**
 Remove automaticamente comentários # noqa desnecessários
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+## **Arquitetura**
+
+A arquitetura de software escolhida para o challange será a arquitetura limpa.
+
+### **Sobre a arquitetura**
+A arquitetura limpa (clean architecture) é um padrão de arquitetura de software proposto por Robert C. Martin, também conhecido como Uncle Bob. Ela busca separar as preocupações em um sistema, promovendo um design modular, testável e de fácil manutenção.
+
+A principal ideia por trás da arquitetura limpa é estabelecer uma separação clara e definida entre as diferentes camadas do sistema, com cada camada tendo responsabilidades específicas e bem definidas. Essa separação permite que as camadas internas não dependam das camadas externas, resultando em um acoplamento fraco e maior flexibilidade.
+
+A arquitetura limpa segue o princípio da inversão de dependência (Dependency Inversion Principle - DIP) e do princípio da responsabilidade única (Single Responsibility Principle - SRP). O princípio da inversão de dependência prega que módulos de alto nível não devem depender de módulos de baixo nível, mas sim de abstrações. Já o princípio da responsabilidade única afirma que cada classe ou componente deve ter apenas uma razão para mudar.
+
+### **Estrutura**
+A arquitetura limpa é composta por várias camadas, que geralmente incluem:
+
+- **domain**: Camada de domínio, é o núcleo do sistema e contém as regras de negócio e as entidades principais.
+
+- **application**: Camada de aplicação, é responsável por orquestrar as ações do sistema, aplicando as regras de negócio da camada de entidades.
+
+- **adpter_entrypoints**: É a camada responsável por lidar com a interação do usuário, seja por meio de uma interface gráfica, uma API ou qualquer outro meio de comunicação.
+
+- **infrastructure**: É a camada responsável por implementar os detalhes técnicos, como acesso a bancos de dados, chamadas a serviços externos, etc.
+
+### **Motivos**
+A escolha da arquitetura limpa foi pensada por dois motivos.
+- Por ela ser uma arquitetura com um fraco acoplamento entre as camadas, ela facilita a manutenção e também a escalabilidade do sistema, por esse desafio poder ser estendido futuramente, ela se faz uma boa opção, permitindo uma facilidade para inclusão de novas features.
+- Também foi escolhida por ser a arquitetura que estou utilizando atualmente, agilizando assim o desenvolvimento baseado no prazo de entrega do projeto.
