@@ -31,3 +31,6 @@ jobs:
 
     - name: Run mypy check
       run: poetry run mypy system
+
+    - name: Run isort check
+      run: poetry run isort . -c

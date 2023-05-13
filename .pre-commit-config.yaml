@@ -60,3 +60,9 @@ repos:
     pass_filenames: false
     args:
     - "system"
+
+  - id: isort
+    name: isort
+    entry: isort .
+    language: system
+    types: [python]
