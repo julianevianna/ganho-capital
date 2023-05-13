@@ -33,7 +33,7 @@ jobs:
       run: poetry run mypy system
 
     - name: Run isort check
-      run: poetry run isort . -c+
+      run: poetry run isort . -c
 
     - name: Run autoflake check
       run: >
