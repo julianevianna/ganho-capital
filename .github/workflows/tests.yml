@@ -26,6 +26,8 @@ jobs:
         POETRY_VIRTUALENVS_CREATE: true
 
     - name: Run tests
+      run: |
+        poetry run coverage run -m pytest . -vvv
+        poetry run coverage report
       env:
         POETRY_VIRTUALENVS_CREATE: true
-      run: poetry run pytest
