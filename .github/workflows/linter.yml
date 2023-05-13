@@ -1,4 +1,4 @@
-name: Test
+name: Linter
 
 on:
   pull_request:
@@ -25,3 +25,6 @@ jobs:
 
     - name: Run black check
       run: poetry run black --check .
+
+    - name: Run flake8 check
+      run: poetry run flake8 --config=.flake8 --count .
