@@ -248,6 +248,10 @@ Poetry é uma ferramenta para gerenciamento de pacotes e dependências para Pyth
 
 ### **Pytest**
 Framework para escrita de testes unitários em python.
+
+### **Covarage**
+O Coverage.py é uma ferramenta para medir a cobertura de código de programas em Python.
+
 <br><br><br>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
