@@ -66,3 +66,10 @@ repos:
     entry: isort .
     language: system
     types: [python]
+
+  - id: autoflake
+    name: autoflake
+    entry: autoflake
+    language: system
+    types: [python]
+    args: [-r, --in-place, --remove-all-unused-imports, --remove-duplicate-keys, --remove-unused-variables, .]
