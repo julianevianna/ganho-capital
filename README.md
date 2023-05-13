@@ -238,7 +238,7 @@ Nesse objeto de valor, temos uma generalização para o resultado de uma operaç
 |tax_value: float = self.value * self.tax_rate|
 
 Nesse objeto de valor, temos uma generalização para o imposto, a partir das informações de valor, percentagem do imposto e o valor de imposto resultante. Foi criado como objeto de valor a fim de ser uma propriedade padrão para imposto idependentemente de sua aplicação.
-<br><br>
+<br><br><br>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 ## **Bibliotecas**
@@ -248,4 +248,25 @@ Poetry é uma ferramenta para gerenciamento de pacotes e dependências para Pyth
 
 ### **Pytest**
 Framework para escrita de testes unitários em python.
+<br><br><br>
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+## **Pre-commit**
+
+### **Black**
+Formatador de código para python
+
+### **Autoflake**
+Remove imports e variaveis que não foram utilizados
+
+### **Isort**
+Organiza os imports por ordem alfabética e automaticamente separa em seções e por tipo
+
+### **Flake8**
+Validador de Pep8 (Style Guide para códigos em python)
+
+### **Mypy**
+Validador de tipagem
+
+### **Yesqa**
+Remove automaticamente comentários # noqa desnecessários
