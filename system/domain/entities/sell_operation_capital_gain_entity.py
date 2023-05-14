@@ -12,6 +12,7 @@ from system.domain.value_objects.tax_value_object import TaxValueObject
 
 class SellOperationCapitalGainEntity(OperationCapitalGainEntity):
     returns: ReturnsValueObject
+    previous_loss: Decimal
     total_value: Decimal
 
     @root_validator(pre=True)

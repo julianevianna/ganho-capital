@@ -9,16 +9,16 @@ class ReturnsValueObject(BaseValueObject):
     average_price: Decimal
     quantity: int
     total_value: Decimal
-    loss: Decimal
+    previous_loss: Decimal
     returns: Decimal
 
     @root_validator(pre=True)
-    def default_loss(
+    def default_previous_loss(
         cls,
         values,
     ) -> Decimal:
-        if "loss" not in values or values["loss"] is None:
-            values["loss"] = Decimal("0.00")
+        if "previous_loss" not in values or values["previous_loss"] is None:
+            values["previous_loss"] = Decimal("0.00")
 
         return values
 
@@ -27,7 +27,7 @@ class ReturnsValueObject(BaseValueObject):
         values["returns"] = (
             values["total_value"]
             - values["average_price"] * values["quantity"]
-            - values["loss"]
+            - values["previous_loss"]
         )
 
         return values

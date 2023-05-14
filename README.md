@@ -208,6 +208,7 @@ Nessa entidade temos uma filha de operação de ganho de capital, específica pa
 |--------------|
 |returns: Return|
 |total_value: float|
+|previous_loss: Optional[float]|
 
 Nessa entidade temos uma filha de operação de ganho de capital, específica para venda, podendo incluir especificações de compra caso necessário sem alteração das classes mães.
 <br><br>
@@ -225,7 +226,7 @@ Nessa entidade temos uma filha de operação de ganho de capital, específica pa
 |average_price: float|
 |quantity: float|
 |total_value: float|
-|loss: Optional[float]|
+|previous_loss: Optional[float]|
 |returns: float|
 
 Nesse objeto de valor, temos uma generalização para o resultado de uma operação, podendo ser positivo (Lucro) ou negativo (Prejuízo) a partir das informações de preço médio, quantidade, valor total da operação, prejuízo (caso exista) e o valor do resultado. Foi criado como objeto de valor a fim de ser uma propriedade padrão para resultado idependentemente de sua aplicação.

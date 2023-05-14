@@ -118,6 +118,25 @@ def test_tax_sell_operation_not_minunum_sucess(
     )
 
 
+def test_return_sell_operation_profit_with_previous_loss_sucess(
+    mock_sell_profit_with_previous_loss_operation: SellOperationCapitalGainEntity,
+) -> None:
+    test_case = TestCase()
+
+    test_case.assertEqual(
+        mock_sell_profit_with_previous_loss_operation.returns.returns,
+        Decimal("-50000.00"),
+    )
+
+
+def test_tax_sell_operation_profit_with_previous_loss_sucess(
+    mock_sell_profit_operation: SellOperationCapitalGainEntity,
+) -> None:
+    test_case = TestCase()
+
+    test_case.assertEqual(mock_sell_profit_operation.tax.tax_value, Decimal("10000.00"))
+
+
 def test_type_sell_operation_sucess() -> None:
     test_case = TestCase()
 
