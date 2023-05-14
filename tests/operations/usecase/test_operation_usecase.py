@@ -8,15 +8,17 @@ from system.application.usecases.operations.taxes_from_operations_list_usecase i
 
 
 def test_taxes_from_operations_list_usecase_sucess(
-    mock_operations_list_input: OperationsListInput,
-    mock_taxes_list_output: TaxesListOutput,
+    mock_operations_list_input_usecase: OperationsListInput,
+    mock_taxes_list_output_usecase: TaxesListOutput,
 ) -> None:
     test_case = TestCase()
 
-    expected_result: TaxesListOutput = mock_taxes_list_output
+    expected_result: TaxesListOutput = mock_taxes_list_output_usecase
 
     taxes_from_operations_list_usecase = TaxesFromOperationsListUsecase()
 
-    result = taxes_from_operations_list_usecase.execute(mock_operations_list_input)
+    result = taxes_from_operations_list_usecase.execute(
+        mock_operations_list_input_usecase,
+    )
 
     test_case.assertEqual(expected_result, result)
