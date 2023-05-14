@@ -10,19 +10,19 @@ from system.application.dto.operation_list_input import (
 
 
 def test_input_fields_sucess(
-    mock_operations_list_cli: List[Dict],
-    mock_operations_list_input: OperationsListInput,
+    mock_operations_list_cli_sucess: List[Dict],
+    mock_operations_list_input_sucess: OperationsListInput,
 ):
     test_case = TestCase()
 
     operation_list_input = OperationsListInput(
         operation_list=[
             OperationInput.parse_obj(operation)
-            for operation in mock_operations_list_cli
+            for operation in mock_operations_list_cli_sucess
         ],
     )
 
-    test_case.assertEqual(operation_list_input, mock_operations_list_input)
+    test_case.assertEqual(operation_list_input, mock_operations_list_input_sucess)
 
 
 def test_input_operation_field_fail(
@@ -93,3 +93,33 @@ def test_input_wrong_field_fail(
                 for operation in mock_operations_list_cli_wrong_field_fail
             ],
         )
+
+
+def test_input_wrong_operation_type_fail(
+    mock_operations_list_cli_wrong_operation_type_fail: List[Dict],
+):
+    test_case = TestCase()
+
+    with test_case.assertRaises(ValidationError):
+        OperationsListInput(
+            operation_list=[
+                OperationInput.parse_obj(operation)
+                for operation in mock_operations_list_cli_wrong_operation_type_fail
+            ],
+        )
+
+
+def test_input_operation_type_case_insensitive_sucess(
+    mock_operations_list_cli_operation_type_case_insensitive_sucess: List[Dict],
+    mock_operations_list_input_sucess: OperationsListInput,
+):
+    test_case = TestCase()
+
+    operation_list_input = OperationsListInput(
+        operation_list=[
+            OperationInput.parse_obj(operation)
+            for operation in mock_operations_list_cli_operation_type_case_insensitive_sucess
+        ],
+    )
+
+    test_case.assertEqual(operation_list_input, mock_operations_list_input_sucess)
