@@ -66,7 +66,9 @@ def mock_sell_profit_operation() -> SellOperationCapitalGainEntity:
 
 
 @pytest.fixture
-def mock_sell_profit_with_previous_loss_operation() -> SellOperationCapitalGainEntity:
+def mock_sell_profit_with_previous_loss_resulting_loss_operation() -> (
+    SellOperationCapitalGainEntity
+):
     return SellOperationCapitalGainEntity(
         type="sell",
         unit_cost=Decimal("20.00"),
@@ -74,6 +76,20 @@ def mock_sell_profit_with_previous_loss_operation() -> SellOperationCapitalGainE
         operations_total_quantity=10000,
         operation_weighted_average_price=Decimal("10.00"),
         previous_loss=Decimal("100000.00"),
+    )
+
+
+@pytest.fixture
+def mock_sell_profit_with_previous_loss_resulting_zero_operation() -> (
+    SellOperationCapitalGainEntity
+):
+    return SellOperationCapitalGainEntity(
+        type="sell",
+        unit_cost=Decimal("20.00"),
+        quantity=5000,
+        operations_total_quantity=10000,
+        operation_weighted_average_price=Decimal("10.00"),
+        previous_loss=Decimal("50000.00"),
     )
 
 
