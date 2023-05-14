@@ -253,6 +253,8 @@ Framework para escrita de testes unitários em python.
 ### **Covarage**
 O Coverage.py é uma ferramenta para medir a cobertura de código de programas em Python.
 
+### **Pydantic**
+Pydantic é uma biblioteca de Python usada para validação de dados.
 
 ### **Pre-commit**
 
