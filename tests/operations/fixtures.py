@@ -1,4 +1,5 @@
 from decimal import Decimal
+from typing import List
 
 import pytest
 
@@ -10,6 +11,14 @@ from system.application.dto.taxes_list_output import TaxesListOutput
 from system.domain.entities.buy_operation_capital_gain_entity import (
     BuyOperationCapitalGainEntity,
 )
+from system.domain.entities.operation_capital_gain_entity import (
+    OperationCapitalGainEntity,
+)
+from system.domain.entities.operation_list_entity import OperationListEntity
+from system.domain.entities.sell_operation_capital_gain_entity import (
+    SellOperationCapitalGainEntity,
+)
+from system.domain.value_objects.returns_value_objct import ReturnsValueObject
 from system.domain.value_objects.tax_value_object import TaxValueObject
 
 
@@ -108,3 +117,49 @@ def mock_taxes_list_output():
     )
 
     return taxes_list
+
+
+@pytest.fixture
+def mock_operations_list_entity() -> OperationListEntity:
+    operations_list: List[OperationCapitalGainEntity] = []
+
+    operations_list.append(
+        BuyOperationCapitalGainEntity(
+            type="buy",
+            unit_cost=Decimal("10.00"),
+            quantity=10000,
+        ),
+    )
+    operations_list.append(
+        BuyOperationCapitalGainEntity(
+            type="buy",
+            unit_cost=Decimal("25.00"),
+            quantity=5000,
+        ),
+    )
+    operations_list.append(
+        SellOperationCapitalGainEntity(
+            type="sell",
+            unit_cost=Decimal("15.00"),
+            quantity=10000,
+            tax=TaxValueObject(
+                value=0,
+                tax_rate=20,
+            ),
+            returns=ReturnsValueObject(
+                average_price=Decimal("15.00"),
+                quantity=10000,
+                total_value=Decimal("150000.00"),
+                loss=Decimal("0.00"),
+                returns=Decimal("0.00"),
+            ),
+            total_value=Decimal("150000.00"),
+        ),
+    )
+
+    operations_list_entity = OperationListEntity(
+        operations=operations_list,
+        tax_rate=Decimal("20.00"),
+    )
+
+    return operations_list_entity

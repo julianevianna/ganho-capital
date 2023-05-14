@@ -6,6 +6,7 @@ from pydantic import ValidationError
 from system.domain.entities.buy_operation_capital_gain_entity import (
     BuyOperationCapitalGainEntity,
 )
+from system.domain.entities.operation_list_entity import OperationListEntity
 from system.domain.value_objects.tax_value_object import TaxValueObject
 
 
@@ -30,3 +31,14 @@ def test_tax_buy_operation_fail_tax_different_zero() -> None:
         )
 
     test_case.assertIn("A Buy Operation doesent have tax", str(error.exception))
+
+
+def test_weighted_average_price_sucess(
+    mock_operations_list_entity: OperationListEntity,
+) -> None:
+    test_case = TestCase()
+
+    test_case.assertEqual(
+        mock_operations_list_entity.weighted_average_price,
+        Decimal("15.00"),
+    )
