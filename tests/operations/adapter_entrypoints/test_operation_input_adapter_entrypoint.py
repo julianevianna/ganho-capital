@@ -123,3 +123,31 @@ def test_input_operation_type_case_insensitive_sucess(
     )
 
     test_case.assertEqual(operation_list_input, mock_operations_list_input_sucess)
+
+
+def test_input_wrong_unit_cost_format_fail(
+    mock_operations_list_cli_wrong_unit_cost_format_fail: List[Dict],
+):
+    test_case = TestCase()
+
+    with test_case.assertRaises(ValidationError):
+        OperationsListInput(
+            operation_list=[
+                OperationInput.parse_obj(operation)
+                for operation in mock_operations_list_cli_wrong_unit_cost_format_fail
+            ],
+        )
+
+
+def test_input_wrong_quantity_format_fail(
+    mock_operations_list_cli_wrong_quantity_format_fail: List[Dict],
+):
+    test_case = TestCase()
+
+    with test_case.assertRaises(ValidationError):
+        OperationsListInput(
+            operation_list=[
+                OperationInput.parse_obj(operation)
+                for operation in mock_operations_list_cli_wrong_quantity_format_fail
+            ],
+        )
