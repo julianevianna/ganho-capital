@@ -2,9 +2,13 @@ from decimal import Decimal
 
 import pytest
 
+from system.application.dto.operation_list_input import (OperationInput,
+                                                         OperationsListInput)
+from system.application.dto.taxes_list_output import TaxesListOutput
+
 
 @pytest.fixture
-def operations_list_input():
+def mock_operations_list_cli() -> OperationsListInput:
     operations_list = []
 
     operations_list.append(
@@ -24,8 +28,36 @@ def operations_list_input():
 
 
 @pytest.fixture
-def taxes_list_output():
-    taxes_list = []
+def mock_operations_list_input() -> OperationsListInput:
+    operations_list: OperationsListInput = []
+
+    operations_list.append(
+        OperationInput(
+            **{"operation": "buy", "unit_cost": Decimal("10.00"), "quantity": 10000}
+        ),
+    )
+    operations_list.append(
+        OperationInput(
+            **{"operation": "sell", "unit_cost": Decimal("20.00"), "quantity": 5000}
+        ),
+    )
+    operations_list.append(
+        OperationInput(
+            **{"operation": "buy", "unit_cost": Decimal("20.00"), "quantity": 10000}
+        ),
+    )
+    operations_list.append(
+        OperationInput(
+            **{"operation": "sell", "unit_cost": Decimal("10.00"), "quantity": 5000}
+        ),
+    )
+
+    return operations_list
+
+
+@pytest.fixture
+def mock_taxes_list_output():
+    taxes_list: TaxesListOutput = []
 
     taxes_list.append(
         {
