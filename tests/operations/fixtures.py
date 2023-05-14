@@ -73,9 +73,7 @@ def mock_sell_profit_with_previous_loss_operation() -> SellOperationCapitalGainE
         quantity=5000,
         operations_total_quantity=10000,
         operation_weighted_average_price=Decimal("10.00"),
-        returns=ReturnsValueObject(
-            loss=Decimal("100000.00"),
-        ),
+        previous_loss=Decimal("100000.00"),
     )
 
 

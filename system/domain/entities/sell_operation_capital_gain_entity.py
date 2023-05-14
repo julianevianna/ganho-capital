@@ -52,7 +52,9 @@ class SellOperationCapitalGainEntity(OperationCapitalGainEntity):
             average_price=values["operation_weighted_average_price"],
             quantity=values["quantity"],
             total_value=values["total_value"],
-            loss=values["loss"] if "loss" in values else None,
+            previous_loss=values["previous_loss"]
+            if "previous_loss" in values
+            else None,
         )  # type: ignore
 
         return values

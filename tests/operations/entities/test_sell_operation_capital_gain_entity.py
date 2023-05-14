@@ -130,11 +130,14 @@ def test_return_sell_operation_profit_with_previous_loss_sucess(
 
 
 def test_tax_sell_operation_profit_with_previous_loss_sucess(
-    mock_sell_profit_operation: SellOperationCapitalGainEntity,
+    mock_sell_profit_with_previous_loss_operation: SellOperationCapitalGainEntity,
 ) -> None:
     test_case = TestCase()
 
-    test_case.assertEqual(mock_sell_profit_operation.tax.tax_value, Decimal("10000.00"))
+    test_case.assertEqual(
+        mock_sell_profit_with_previous_loss_operation.tax.tax_value,
+        Decimal("0.00"),
+    )
 
 
 def test_type_sell_operation_sucess() -> None:
