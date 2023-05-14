@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from pydantic import root_validator, validator
+from pydantic import root_validator
 
 from system.application.enums.operation_type_enum import OperationTypeEnum
 from system.domain.entities.operation_capital_gain_entity import (
@@ -70,8 +70,10 @@ class SellOperationCapitalGainEntity(OperationCapitalGainEntity):
 
         return values
 
-    @validator("type")
-    def check_type(cls, type):
-        if type != OperationTypeEnum.SELL.value:
+    @root_validator(pre=True)
+    def default_type(cls, values):
+        if "type" not in values or values["type"] is None:
+            values["type"] = OperationTypeEnum.SELL.value
+        elif values["type"] != OperationTypeEnum.SELL.value:
             raise ValueError("A Sell Operation cannot have a type different than sell")
-        return type
+        return values
