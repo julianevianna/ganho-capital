@@ -12,9 +12,12 @@ class TaxesListOutput(Output):
     @validator("taxes", pre=True)
     def check_taxes(cls, value):
         for index, tax in enumerate(value):
-            value[index] = Decimal(tax).quantize(
-                Decimal("0.00"),
-                rounding=ROUND_HALF_UP,
+            if isinstance(tax, float):
+                tax = Decimal(str(tax))
+            value[index] = (
+                Decimal(tax).quantize(Decimal("0.00"), rounding=ROUND_HALF_UP)
+                if isinstance(tax, Decimal)
+                else tax
             )
 
         return value

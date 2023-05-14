@@ -3,12 +3,14 @@ from typing import List
 
 import pytest
 
+from system.application.enums.operation_type_enum import OperationTypeEnum
 from system.domain.entities.buy_operation_capital_gain_entity import (
     BuyOperationCapitalGainEntity,
 )
 from system.domain.entities.operation_capital_gain_entity import (
     OperationCapitalGainEntity,
 )
+from system.domain.entities.operation_entity import OperationEntity
 from system.domain.entities.operation_list_entity import OperationListEntity
 from system.domain.entities.sell_operation_capital_gain_entity import (
     SellOperationCapitalGainEntity,
@@ -185,3 +187,67 @@ def mock_operations_list_entity() -> OperationListEntity:
     )
 
     return operations_list_entity
+
+
+@pytest.fixture
+def mock_operation_entity_decimals_round_sucess() -> OperationEntity:
+    operation_entity = OperationEntity(
+        type=OperationTypeEnum.BUY.value,
+        unit_cost=Decimal("50.03"),
+        quantity=100,
+    )
+
+    return operation_entity
+
+
+@pytest.fixture
+def mock_operation_gain_list_entity_decimals_round_sucess() -> OperationListEntity:
+    operation_list_entity = OperationListEntity(
+        operations=[
+            BuyOperationCapitalGainEntity(
+                unit_cost=Decimal("10.00"),
+                quantity=100,
+                operation_weighted_average_price=Decimal("20.00"),
+            ),
+        ],
+        tax_rate=Decimal("20.00"),
+    )
+
+    return operation_list_entity
+
+
+@pytest.fixture
+def mock_tax_entity_decimals_round_sucess() -> TaxValueObject:
+    tax_value_object = TaxValueObject(
+        value=Decimal("20.38"),
+        tax_rate=Decimal("4.67"),
+    )
+
+    return tax_value_object
+
+
+@pytest.fixture
+def mock_returns_entity_decimals_round_success() -> ReturnsValueObject:
+    returns_value_object = ReturnsValueObject(
+        average_price=Decimal("20.38"),
+        quantity=10,
+        total_value=Decimal("203.80"),
+        previous_loss=Decimal("10.33"),
+    )
+
+    return returns_value_object
+
+
+@pytest.fixture
+def mock_sell_operation_gain_entity_decimals_round_success() -> (
+    SellOperationCapitalGainEntity
+):
+    sell_operation_gain_entity = SellOperationCapitalGainEntity(
+        unit_cost=Decimal("10.00"),
+        quantity=10,
+        operations_total_quantity=100,
+        operation_weighted_average_price=Decimal("5.33"),
+        previous_loss=Decimal("7.36"),
+    )
+
+    return sell_operation_gain_entity

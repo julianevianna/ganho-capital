@@ -1,4 +1,4 @@
-from decimal import Decimal
+from decimal import ROUND_HALF_UP, Decimal
 from typing import Optional
 
 from pydantic import root_validator
@@ -15,6 +15,17 @@ class SellOperationCapitalGainEntity(OperationCapitalGainEntity):
     returns: ReturnsValueObject
     previous_loss: Optional[Decimal]
     total_value: Decimal
+
+    @root_validator(pre=True)
+    def validate_decimals(cls, values):
+        for index, value in values.items():
+            if isinstance(values[index], Decimal):
+                values[index] = Decimal(value).quantize(
+                    Decimal("0.00"),
+                    rounding=ROUND_HALF_UP,
+                )
+
+        return values
 
     @root_validator(pre=True)
     def default_total_value(

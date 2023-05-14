@@ -7,6 +7,8 @@ from system.application.enums.operation_type_enum import OperationTypeEnum
 from system.domain.entities.sell_operation_capital_gain_entity import (
     SellOperationCapitalGainEntity,
 )
+from system.domain.value_objects.returns_value_objct import ReturnsValueObject
+from system.domain.value_objects.tax_value_object import TaxValueObject
 
 
 def test_sell_operation_total_value(
@@ -210,4 +212,51 @@ def test_type_sell_operation_fail() -> None:
     test_case.assertIn(
         "A Sell Operation cannot have a type different than sell",
         str(error.exception),
+    )
+
+
+def test_tax_entity_decimals_round_sucess(
+    mock_tax_entity_decimals_round_sucess: TaxValueObject,
+) -> None:
+    test_case = TestCase()
+
+    tax_value_object = TaxValueObject(
+        value=Decimal("20.378"),
+        tax_rate=Decimal("4.665"),
+    )
+
+    test_case.assertEqual(tax_value_object, mock_tax_entity_decimals_round_sucess)
+
+
+def test_returns_entity_decimals_round_success(
+    mock_returns_entity_decimals_round_success: ReturnsValueObject,
+) -> None:
+    test_case = TestCase()
+
+    tax_value_object = ReturnsValueObject(
+        average_price=Decimal("20.378"),
+        quantity=10,
+        total_value=Decimal("203.80"),
+        previous_loss=Decimal("10.326"),
+    )
+
+    test_case.assertEqual(tax_value_object, mock_returns_entity_decimals_round_success)
+
+
+def test_sell_operation_gain_entity_decimals_round_success(
+    mock_sell_operation_gain_entity_decimals_round_success: SellOperationCapitalGainEntity,
+) -> None:
+    test_case = TestCase()
+
+    sell_operation_gain_entity = SellOperationCapitalGainEntity(
+        unit_cost=Decimal("10.0026"),
+        quantity=10,
+        operations_total_quantity=100,
+        operation_weighted_average_price=Decimal("5.326"),
+        previous_loss=Decimal("7.356"),
+    )
+
+    test_case.assertEqual(
+        sell_operation_gain_entity,
+        mock_sell_operation_gain_entity_decimals_round_success,
     )

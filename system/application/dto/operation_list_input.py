@@ -14,7 +14,13 @@ class OperationInput(Input):
 
     @validator("unit_cost", pre=True)
     def check_unit_cost(cls, v):
-        return Decimal(v).quantize(Decimal("0.00"), rounding=ROUND_HALF_UP)
+        if isinstance(v, float):
+            v = Decimal(str(v))
+        return (
+            Decimal(v).quantize(Decimal("0.00"), rounding=ROUND_HALF_UP)
+            if isinstance(v, Decimal)
+            else v
+        )
 
     @validator("operation", pre=True)
     def lowercase_field(cls, v):

@@ -1,6 +1,6 @@
 from decimal import ROUND_HALF_UP, Decimal, InvalidOperation
 
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, root_validator
 
 
 class BaseValueObject(BaseModel):
@@ -11,11 +11,15 @@ class BaseValueObject(BaseModel):
         arbitrary_types_allowed = True
         validate_assignment = True
 
-    @validator("*", pre=True)
-    def validate_decimals(cls, v):
-        if isinstance(v, Decimal):
-            try:
-                return Decimal(v).quantize(Decimal("0.00"), rounding=ROUND_HALF_UP)
-            except InvalidOperation:
-                raise ValueError("Invalid Decimal value")
-        return v
+    @root_validator(pre=True)
+    def validate_decimals(cls, values):
+        for index, value in values.items():
+            if isinstance(values[index], Decimal):
+                try:
+                    values[index] = Decimal(value).quantize(
+                        Decimal("0.00"),
+                        rounding=ROUND_HALF_UP,
+                    )
+                except InvalidOperation:
+                    raise ValueError("Invalid Decimal value")
+        return values

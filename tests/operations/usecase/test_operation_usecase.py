@@ -7,7 +7,7 @@ from system.application.usecases.operations.taxes_from_operations_list_usecase i
 )
 
 
-def test_taxes_from_operations_list_usecase_sucess(
+def test_taxes_from_operations_list_case_1_sucess(
     mock_operations_list_input_usecase: OperationsListInput,
     mock_taxes_list_output_usecase: TaxesListOutput,
 ) -> None:
