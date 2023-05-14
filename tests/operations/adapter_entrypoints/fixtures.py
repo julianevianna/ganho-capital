@@ -43,6 +43,26 @@ def mock_operations_list_cli_sucess() -> List[Dict]:
 
 
 @pytest.fixture
+def mock_operations_list_cli_round_decimals_sucess() -> List[Dict]:
+    operations_list = []
+
+    operations_list.append(
+        {"operation": "buy", "unit-cost": 10.001, "quantity": 10000},
+    )
+    operations_list.append(
+        {"operation": "sell", "unit-cost": 20.001, "quantity": 5000},
+    )
+    operations_list.append(
+        {"operation": "buy", "unit-cost": 20.001, "quantity": 10000},
+    )
+    operations_list.append(
+        {"operation": "sell", "unit-cost": 10.001, "quantity": 5000},
+    )
+
+    return operations_list
+
+
+@pytest.fixture
 def mock_operations_list_cli_operation_field_fail() -> List[Dict]:
     operations_list = []
 
@@ -318,3 +338,13 @@ def mock_operations_list_entity_to_get_taxes() -> OperationListEntity:
     )
 
     return operations_list_entity
+
+
+@pytest.fixture
+def mock_taxes_list_output_round_decimals_sucess() -> TaxesListOutput:
+    taxes_list: List[Decimal] = []
+
+    taxes_list.append(Decimal("10.06"))
+    taxes_list.append(Decimal("11.09"))
+
+    return TaxesListOutput(taxes=taxes_list)

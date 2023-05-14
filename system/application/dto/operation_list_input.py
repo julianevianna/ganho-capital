@@ -1,4 +1,4 @@
-from decimal import Decimal
+from decimal import ROUND_HALF_UP, Decimal
 from typing import List
 
 from pydantic import Field, validator
@@ -11,6 +11,10 @@ class OperationInput(Input):
     operation: OperationTypeEnum
     unit_cost: Decimal = Field(..., alias="unit-cost")
     quantity: int
+
+    @validator("unit_cost", pre=True)
+    def check_unit_cost(cls, v):
+        return Decimal(v).quantize(Decimal("0.00"), rounding=ROUND_HALF_UP)
 
     @validator("operation", pre=True)
     def lowercase_field(cls, v):

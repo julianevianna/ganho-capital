@@ -1,3 +1,4 @@
+from decimal import Decimal
 from unittest import TestCase
 
 from pydantic import ValidationError
@@ -34,3 +35,21 @@ def test_output_operation_taxes_list_fail():
                 "tax2",
             ],
         )
+
+
+def test_output_operation_taxes_list_decimals_round_sucess(
+    mock_taxes_list_output_round_decimals_sucess: TaxesListOutput,
+):
+    test_case = TestCase()
+
+    taxes_list_output = TaxesListOutput(
+        taxes=[
+            Decimal("10.056"),
+            Decimal("11.087"),
+        ],
+    )
+
+    test_case.assertEqual(
+        taxes_list_output,
+        mock_taxes_list_output_round_decimals_sucess,
+    )

@@ -151,3 +151,19 @@ def test_input_wrong_quantity_format_fail(
                 for operation in mock_operations_list_cli_wrong_quantity_format_fail
             ],
         )
+
+
+def test_input_fields_round_decimals_sucess(
+    mock_operations_list_cli_round_decimals_sucess: List[Dict],
+    mock_operations_list_input_sucess: OperationsListInput,
+):
+    test_case = TestCase()
+
+    operation_list_input = OperationsListInput(
+        operation_list=[
+            OperationInput.parse_obj(operation)
+            for operation in mock_operations_list_cli_round_decimals_sucess
+        ],
+    )
+
+    test_case.assertEqual(operation_list_input, mock_operations_list_input_sucess)
