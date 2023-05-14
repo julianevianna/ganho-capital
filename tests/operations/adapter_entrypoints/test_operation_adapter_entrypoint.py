@@ -1,2 +1,82 @@
-def test_true():
-    assert True is True
+from typing import Dict, List
+from unittest import TestCase
+
+from pydantic import ValidationError
+
+from system.application.dto.operation_list_input import (
+    OperationInput,
+    OperationsListInput,
+)
+
+
+def test_input_fields_sucess(
+    mock_operations_list_cli: List[Dict],
+    mock_operations_list_input: OperationsListInput,
+):
+    test_case = TestCase()
+
+    operation_list_input = OperationsListInput(
+        operation_list=[
+            OperationInput.parse_obj(operation)
+            for operation in mock_operations_list_cli
+        ],
+    )
+
+    test_case.assertEqual(operation_list_input, mock_operations_list_input)
+
+
+def test_input_operation_field_fail(
+    mock_operations_list_cli_operation_field_fail: List[Dict],
+):
+    test_case = TestCase()
+
+    with test_case.assertRaises(ValidationError) as error:
+        OperationsListInput(
+            operation_list=[
+                OperationInput.parse_obj(operation)
+                for operation in mock_operations_list_cli_operation_field_fail
+            ],
+        )
+
+    test_case.assertIn(
+        "operation\n  field required",
+        str(error.exception),
+    )
+
+
+def test_input_unit_cost_field_fail(
+    mock_operations_list_cli_unit_cost_field_fail: List[Dict],
+):
+    test_case = TestCase()
+
+    with test_case.assertRaises(ValidationError) as error:
+        OperationsListInput(
+            operation_list=[
+                OperationInput.parse_obj(operation)
+                for operation in mock_operations_list_cli_unit_cost_field_fail
+            ],
+        )
+
+    test_case.assertIn(
+        "unit-cost\n  field required",
+        str(error.exception),
+    )
+
+
+def test_input_unit_quantity_fail(
+    mock_operations_list_cli_quantity_field_fail: List[Dict],
+):
+    test_case = TestCase()
+
+    with test_case.assertRaises(ValidationError) as error:
+        OperationsListInput(
+            operation_list=[
+                OperationInput.parse_obj(operation)
+                for operation in mock_operations_list_cli_quantity_field_fail
+            ],
+        )
+
+    test_case.assertIn(
+        "quantity\n  field required",
+        str(error.exception),
+    )
