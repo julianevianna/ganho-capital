@@ -41,3 +41,14 @@ def test_calculate_new_weighted_average_price_buy_first_operation_sucess(
         mock_buy_operation_first_operation.new_operation_weighted_average_price,
         Decimal("10.00"),
     )
+
+
+def test_calculate_new_weighted_average_price_buy_not_first_operation_sucess(
+    mock_buy_operation: BuyOperationCapitalGainEntity,
+) -> None:
+    test_case = TestCase()
+
+    test_case.assertEqual(
+        mock_buy_operation.new_operation_weighted_average_price,
+        Decimal("15.00"),
+    )

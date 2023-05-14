@@ -28,7 +28,8 @@ def mock_buy_operation() -> BuyOperationCapitalGainEntity:
         type="buy",
         unit_cost=Decimal("10.00"),
         quantity=10000,
-        operations_total_quantity=10000,
+        operations_total_quantity=5000,
+        operation_weighted_average_price=Decimal("25.00"),
     )
 
 
