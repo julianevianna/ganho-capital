@@ -10,3 +10,4 @@ from system.domain.entities.operation_capital_gain_entity import (
 class OperationListEntity(BaseEntity):
     operations: List[OperationCapitalGainEntity]
     tax_rate: Decimal
+    weighted_average_price: Decimal
