@@ -141,7 +141,7 @@ quantidade-de-acoes-compradas)
 
 **Então** o prejuízo deverá ser subtraido do lucro obtido
 
-**E** se o resultado ainda for positivo o imposto de 20% deve ser aplicado
+**E** se o resultado ainda for positivo e maior que R$20.000,00 o imposto de 20% deve ser aplicado
 
 **OU** se o resultado for zero o imposto será zero
 
