@@ -1,4 +1,5 @@
 from decimal import Decimal
+from typing import Optional
 
 from pydantic import root_validator
 
@@ -12,7 +13,7 @@ from system.domain.value_objects.tax_value_object import TaxValueObject
 
 class SellOperationCapitalGainEntity(OperationCapitalGainEntity):
     returns: ReturnsValueObject
-    previous_loss: Decimal
+    previous_loss: Optional[Decimal]
     total_value: Decimal
 
     @root_validator(pre=True)

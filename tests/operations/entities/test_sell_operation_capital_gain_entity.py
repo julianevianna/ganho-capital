@@ -9,7 +9,7 @@ from system.domain.entities.sell_operation_capital_gain_entity import (
 )
 
 
-def test_return_sell_operation_total_value(
+def test_sell_operation_total_value(
     mock_sell_profit_operation: SellOperationCapitalGainEntity,
 ) -> None:
     test_case = TestCase()
@@ -20,7 +20,7 @@ def test_return_sell_operation_total_value(
     )
 
 
-def test_return_sell_operation_new_operation_weighted_average_price(
+def test_sell_operation_new_operation_weighted_average_price(
     mock_sell_profit_operation: SellOperationCapitalGainEntity,
 ) -> None:
     test_case = TestCase()
@@ -31,7 +31,7 @@ def test_return_sell_operation_new_operation_weighted_average_price(
     )
 
 
-def test_return_sell_operation_new_operations_total_quantity(
+def test_sell_operation_new_operations_total_quantity(
     mock_sell_profit_operation: SellOperationCapitalGainEntity,
 ) -> None:
     test_case = TestCase()
@@ -118,6 +118,17 @@ def test_tax_sell_operation_not_minunum_sucess(
     )
 
 
+def test_return_sell_operation_profit_with_previous_loss_resulting_loss_sucess(
+    mock_sell_profit_with_previous_loss_resulting_loss_operation: SellOperationCapitalGainEntity,
+) -> None:
+    test_case = TestCase()
+
+    test_case.assertEqual(
+        mock_sell_profit_with_previous_loss_resulting_loss_operation.returns.returns,
+        Decimal("-50000.00"),
+    )
+
+
 def test_tax_sell_operation_profit_with_previous_loss_resulting_loss_sucess(
     mock_sell_profit_with_previous_loss_resulting_loss_operation: SellOperationCapitalGainEntity,
 ) -> None:
@@ -129,14 +140,14 @@ def test_tax_sell_operation_profit_with_previous_loss_resulting_loss_sucess(
     )
 
 
-def test_return_sell_operation_profit_with_previous_loss_resulting_loss_sucess(
-    mock_sell_profit_with_previous_loss_resulting_loss_operation: SellOperationCapitalGainEntity,
+def test_return_sell_operation_profit_with_previous_loss_resulting_zero_sucess(
+    mock_sell_profit_with_previous_loss_resulting_zero_operation: SellOperationCapitalGainEntity,
 ) -> None:
     test_case = TestCase()
 
     test_case.assertEqual(
-        mock_sell_profit_with_previous_loss_resulting_loss_operation.returns.returns,
-        Decimal("-50000.00"),
+        mock_sell_profit_with_previous_loss_resulting_zero_operation.returns.returns,
+        Decimal("0.00"),
     )
 
 
@@ -151,13 +162,24 @@ def test_tax_sell_operation_profit_with_previous_loss_resulting_zero_sucess(
     )
 
 
-def test_return_sell_operation_profit_with_previous_loss_resulting_zero_sucess(
-    mock_sell_profit_with_previous_loss_resulting_zero_operation: SellOperationCapitalGainEntity,
+def test_return_sell_operation_profit_with_previous_loss_resulting_non_minimum_profit_sucess(
+    mock_sell_profit_with_previous_loss_resulting_non_minimum_profit_operation: SellOperationCapitalGainEntity,
 ) -> None:
     test_case = TestCase()
 
     test_case.assertEqual(
-        mock_sell_profit_with_previous_loss_resulting_zero_operation.returns.returns,
+        mock_sell_profit_with_previous_loss_resulting_non_minimum_profit_operation.returns.returns,
+        Decimal("10000.00"),
+    )
+
+
+def test_tax_sell_operation_profit_with_previous_loss_resulting_non_minimum_profit_sucess(
+    mock_sell_profit_with_previous_loss_resulting_non_minimum_profit_operation: SellOperationCapitalGainEntity,
+) -> None:
+    test_case = TestCase()
+
+    test_case.assertEqual(
+        mock_sell_profit_with_previous_loss_resulting_non_minimum_profit_operation.tax.tax_value,
         Decimal("0.00"),
     )
 
