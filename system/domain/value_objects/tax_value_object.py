@@ -9,4 +9,4 @@ class TaxValueObject(BaseValueObject):
 
     @property
     def tax_value(self):
-        return self.value * self.tax_rate
+        return self.value * (self.tax_rate / 100)
