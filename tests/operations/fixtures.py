@@ -10,6 +10,7 @@ from system.application.dto.taxes_list_output import TaxesListOutput
 from system.domain.entities.buy_operation_capital_gain_entity import (
     BuyOperationCapitalGainEntity,
 )
+from system.domain.value_objects.tax_value_object import TaxValueObject
 
 
 @pytest.fixture
@@ -19,6 +20,17 @@ def mock_buy_operation() -> BuyOperationCapitalGainEntity:
         unit_cost=Decimal("10.00"),
         quantity=10000,
         operations_total_quantity=10000,
+    )
+
+
+@pytest.fixture
+def mock_buy_operation_tax_different_zero() -> BuyOperationCapitalGainEntity:
+    return BuyOperationCapitalGainEntity(
+        type="buy",
+        unit_cost=Decimal("10.00"),
+        quantity=10000,
+        operations_total_quantity=10000,
+        tax=TaxValueObject(value=10, tax_rate=20),
     )
 
 

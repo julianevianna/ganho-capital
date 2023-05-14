@@ -12,6 +12,8 @@ class BuyOperationCapitalGainEntity(OperationCapitalGainEntity):
     def default_tax(cls, values):
         if "tax" not in values or values["tax"] is None:
             values["tax"] = TaxValueObject(value=0, tax_rate=20)
+        if values["tax"].value != 0:
+            raise ValueError("A Buy Operation doesent have tax")
         return values
 
     @validator("type")
