@@ -39,6 +39,19 @@ def test_weighted_average_price_sucess(
     test_case = TestCase()
 
     test_case.assertEqual(
-        mock_operations_list_entity.weighted_average_price,
+        mock_operations_list_entity.weighted_average_price_list.pop(),
         Decimal("15.00"),
+    )
+
+
+def test_operations_total_quantity_sucess(
+    mock_operations_list_entity: OperationListEntity,
+) -> None:
+    test_case = TestCase()
+
+    test_case.assertEqual(
+        mock_operations_list_entity.operations.__getattribute__(
+            "operations_total_quantity",
+        ),
+        [10000, 15000, 5000],
     )

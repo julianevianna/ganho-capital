@@ -176,7 +176,7 @@ Como no challange temos um objetivo muito bem definido, que é o Ganho de capita
 |--------------|
 |operations: List [OperationCapitalGain]|
 |tax_rate: float|
-|weighted_average_price: float|
+|weighted_average_price_list: List[float]|
 
 Essa é a entidade que irá tratar do conjunto de operações realizados a cada entrada, contendo todas as informações passadas na entranda, assim como os seus impostos calculados.
 <br><br>
