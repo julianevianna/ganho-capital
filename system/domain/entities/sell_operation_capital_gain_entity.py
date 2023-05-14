@@ -58,7 +58,7 @@ class SellOperationCapitalGainEntity(OperationCapitalGainEntity):
 
     @root_validator(pre=True)
     def default_tax(cls, values) -> TaxValueObject:
-        if values["returns"].returns > 0:
+        if values["returns"].returns > Decimal("20000.00"):
             returns_value = values["returns"].returns
         else:
             returns_value = Decimal("0.00")

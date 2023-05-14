@@ -77,6 +77,17 @@ def mock_sell_zero_operation() -> SellOperationCapitalGainEntity:
 
 
 @pytest.fixture
+def mock_sell_not_minunum_operation() -> SellOperationCapitalGainEntity:
+    return SellOperationCapitalGainEntity(
+        type="sell",
+        unit_cost=Decimal("15.00"),
+        quantity=50,
+        operations_total_quantity=100,
+        operation_weighted_average_price=Decimal("10.00"),
+    )
+
+
+@pytest.fixture
 def mock_operations_list_cli() -> OperationsListInput:
     operations_list = []
 
