@@ -7,6 +7,9 @@ from system.domain.entities.buy_operation_capital_gain_entity import (
     BuyOperationCapitalGainEntity,
 )
 from system.domain.entities.operation_list_entity import OperationListEntity
+from system.domain.entities.sell_operation_capital_gain_entity import (
+    SellOperationCapitalGainEntity,
+)
 from system.domain.value_objects.tax_value_object import TaxValueObject
 
 
@@ -39,7 +42,12 @@ def test_weighted_average_price_sucess(
     test_case = TestCase()
 
     test_case.assertEqual(
-        mock_operations_list_entity.weighted_average_price_list,
+        list(
+            map(
+                lambda operation: operation.new_operation_weighted_average_price,
+                mock_operations_list_entity.operations,
+            ),
+        ),
         [Decimal("10.00"), Decimal("15.00"), Decimal("15.00")],
     )
 
@@ -58,3 +66,27 @@ def test_operations_total_quantity_sucess(
         ),
         [0, 10000, 15000],
     )
+
+
+def test_tax_sell_operation_profit_sucess(
+    mock_sell_operation: SellOperationCapitalGainEntity,
+) -> None:
+    test_case = TestCase()
+
+    test_case.assertEqual(mock_sell_operation.tax.tax_value, Decimal("0.00"))
+
+
+def test_tax_sell_operation_loss_sucess(
+    mock_sell_operation: SellOperationCapitalGainEntity,
+) -> None:
+    test_case = TestCase()
+
+    test_case.assertEqual(mock_sell_operation.tax.tax_value, Decimal("0.00"))
+
+
+def test_tax_sell_operation_zero_sucess(
+    mock_sell_operation: SellOperationCapitalGainEntity,
+) -> None:
+    test_case = TestCase()
+
+    test_case.assertEqual(mock_sell_operation.tax.tax_value, Decimal("0.00"))

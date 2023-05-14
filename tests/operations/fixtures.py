@@ -44,6 +44,16 @@ def mock_buy_operation_tax_different_zero() -> BuyOperationCapitalGainEntity:
 
 
 @pytest.fixture
+def mock_sell_operation() -> SellOperationCapitalGainEntity:
+    return SellOperationCapitalGainEntity(
+        type="sell",
+        unit_cost=Decimal("20.00"),
+        quantity=5000,
+        operations_total_quantity=10000,
+    )
+
+
+@pytest.fixture
 def mock_operations_list_cli() -> OperationsListInput:
     operations_list = []
 
@@ -135,6 +145,10 @@ def mock_operations_list_entity() -> OperationListEntity:
             type="buy",
             unit_cost=Decimal("25.00"),
             quantity=5000,
+            operation_weighted_average_price=operations_list[
+                -1
+            ].new_operation_weighted_average_price,
+            operations_total_quantity=operations_list[-1].new_operations_total_quantity,
         ),
     )
     operations_list.append(
@@ -154,6 +168,10 @@ def mock_operations_list_entity() -> OperationListEntity:
                 returns=Decimal("0.00"),
             ),
             total_value=Decimal("150000.00"),
+            operation_weighted_average_price=operations_list[
+                -1
+            ].new_operation_weighted_average_price,
+            operations_total_quantity=operations_list[-1].new_operations_total_quantity,
         ),
     )
 
