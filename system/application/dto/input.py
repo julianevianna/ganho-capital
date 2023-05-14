@@ -1,5 +1,5 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Extra
 
 
-class Input(BaseModel):
+class Input(BaseModel, extra=Extra.forbid):
     """Base schema for inputs"""

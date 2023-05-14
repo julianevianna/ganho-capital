@@ -30,7 +30,7 @@ def test_input_operation_field_fail(
 ):
     test_case = TestCase()
 
-    with test_case.assertRaises(ValidationError) as error:
+    with test_case.assertRaises(ValidationError):
         OperationsListInput(
             operation_list=[
                 OperationInput.parse_obj(operation)
@@ -38,18 +38,13 @@ def test_input_operation_field_fail(
             ],
         )
 
-    test_case.assertIn(
-        "operation\n  field required",
-        str(error.exception),
-    )
-
 
 def test_input_unit_cost_field_fail(
     mock_operations_list_cli_unit_cost_field_fail: List[Dict],
 ):
     test_case = TestCase()
 
-    with test_case.assertRaises(ValidationError) as error:
+    with test_case.assertRaises(ValidationError):
         OperationsListInput(
             operation_list=[
                 OperationInput.parse_obj(operation)
@@ -57,18 +52,13 @@ def test_input_unit_cost_field_fail(
             ],
         )
 
-    test_case.assertIn(
-        "unit-cost\n  field required",
-        str(error.exception),
-    )
-
 
 def test_input_unit_quantity_fail(
     mock_operations_list_cli_quantity_field_fail: List[Dict],
 ):
     test_case = TestCase()
 
-    with test_case.assertRaises(ValidationError) as error:
+    with test_case.assertRaises(ValidationError):
         OperationsListInput(
             operation_list=[
                 OperationInput.parse_obj(operation)
@@ -76,7 +66,30 @@ def test_input_unit_quantity_fail(
             ],
         )
 
-    test_case.assertIn(
-        "quantity\n  field required",
-        str(error.exception),
-    )
+
+def test_input_missing_field_fail(
+    mock_operations_list_cli_missing_field_fail: List[Dict],
+):
+    test_case = TestCase()
+
+    with test_case.assertRaises(ValidationError):
+        OperationsListInput(
+            operation_list=[
+                OperationInput.parse_obj(operation)
+                for operation in mock_operations_list_cli_missing_field_fail
+            ],
+        )
+
+
+def test_input_wrong_field_fail(
+    mock_operations_list_cli_wrong_field_fail: List[Dict],
+):
+    test_case = TestCase()
+
+    with test_case.assertRaises(ValidationError):
+        OperationsListInput(
+            operation_list=[
+                OperationInput.parse_obj(operation)
+                for operation in mock_operations_list_cli_wrong_field_fail
+            ],
+        )

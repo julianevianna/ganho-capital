@@ -221,6 +221,26 @@ def mock_operations_list_cli_quantity_field_fail() -> OperationsListInput:
 
 
 @pytest.fixture
+def mock_operations_list_cli_missing_field_fail() -> OperationsListInput:
+    operations_list = []
+
+    operations_list.append(
+        {"unit-cost": Decimal("10.00"), "quantity": 10000},
+    )
+    operations_list.append(
+        {"operation": "sell", "quantity": 5000},
+    )
+    operations_list.append(
+        {"operation": "buy", "unit-cost": Decimal("20.00")},
+    )
+    operations_list.append(
+        {"operation": "sell", "unit-cost": Decimal("10.00"), "quantity": 5000},
+    )
+
+    return operations_list
+
+
+@pytest.fixture
 def mock_operations_list_input() -> OperationsListInput:
     operations_list_from_cli: List[OperationInput] = []
 
@@ -248,6 +268,31 @@ def mock_operations_list_input() -> OperationsListInput:
     operations_list_input = OperationsListInput(operation_list=operations_list_from_cli)
 
     return operations_list_input
+
+
+@pytest.fixture
+def mock_operations_list_cli_wrong_field_fail() -> OperationsListInput:
+    operations_list = []
+
+    operations_list.append(
+        {
+            "operation": "buy",
+            "unit-cost": Decimal("10.00"),
+            "quantity": 10000,
+            "total-value": Decimal("100000.00"),
+        },
+    )
+    operations_list.append(
+        {"operation": "sell", "unit-cost": Decimal("20.00"), "quantity": 5000},
+    )
+    operations_list.append(
+        {"operation": "buy", "unit-cost": Decimal("20.00"), "quantity": 10000},
+    )
+    operations_list.append(
+        {"operation": "sell", "unit-cost": Decimal("10.00"), "quantity": 5000},
+    )
+
+    return operations_list
 
 
 @pytest.fixture
