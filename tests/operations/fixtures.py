@@ -33,6 +33,16 @@ def mock_buy_operation() -> BuyOperationCapitalGainEntity:
 
 
 @pytest.fixture
+def mock_buy_operation_first_operation() -> BuyOperationCapitalGainEntity:
+    return BuyOperationCapitalGainEntity(
+        type="buy",
+        unit_cost=Decimal("10.00"),
+        quantity=10000,
+        operations_total_quantity=0,
+    )
+
+
+@pytest.fixture
 def mock_buy_operation_tax_different_zero() -> BuyOperationCapitalGainEntity:
     return BuyOperationCapitalGainEntity(
         type="buy",

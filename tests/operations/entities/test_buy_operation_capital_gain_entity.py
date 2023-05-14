@@ -30,3 +30,14 @@ def test_tax_buy_operation_fail_tax_different_zero() -> None:
         )
 
     test_case.assertIn("A Buy Operation doesent have tax", str(error.exception))
+
+
+def test_calculate_new_weighted_average_price_buy_first_operation_sucess(
+    mock_buy_operation_first_operation: BuyOperationCapitalGainEntity,
+) -> None:
+    test_case = TestCase()
+
+    test_case.assertEqual(
+        mock_buy_operation_first_operation.new_operation_weighted_average_price,
+        Decimal("10.00"),
+    )
