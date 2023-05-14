@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from pydantic import root_validator, validator
 
 from system.application.enums.operation_type_enum import OperationTypeEnum
@@ -8,6 +10,8 @@ from system.domain.value_objects.tax_value_object import TaxValueObject
 
 
 class BuyOperationCapitalGainEntity(OperationCapitalGainEntity):
+    weighted_average_price: Decimal
+
     @root_validator(pre=True)
     def default_tax(cls, values):
         if "tax" not in values or values["tax"] is None:
