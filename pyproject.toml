@@ -18,6 +18,11 @@ pylint = "^2.17.4"
 pydantic = "^1.10.7"
 pre-commit = "^3.3.1"
 
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+src_paths = ["system",]
+
 
 [build-system]
 requires = ["poetry-core"]
