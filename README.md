@@ -311,34 +311,49 @@ Temos um único container (*cli*), que é utilizado para suir a aplicação base
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 ## **Como rodar o projeto**
-Para rodar o projeto, é necessário ter o docker instalado na sua máquina, caso não tenha, siga as instruções dos links:
+
+
+### **Utilizando Docker**
+Para rodar o projeto com docker, é necessário ter ele instalado na sua máquina, caso não tenha, siga as instruções dos links:
 - **Ubuntu:** [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 - **Mac:** [Install Docker Engine on Mac](https://docs.docker.com/desktop/install/mac-install/)
 - **Windows:** [Install Docker Engine on Windows](https://docs.docker.com/desktop/install/windows-install/)
 
-### **Com arquivo**
+Comece buildando e subindo seu container:
+```
+docker compose up -d --build
+```
+
+Se a sua versão do docker-compose for mais antiga, use:
+```
+docker-compose up -d --build
+```
 Para rodar o projeto utilizando um arquivo, inclua o arquivo na root do projeto em seguida rode os seguintes comandos:
 ```
-docker compose up -d --build
 docker run -i ganho-capital-cli < nome_arquivo.txt
 ```
 
-Se a sua versão do docker-compose for mais antiga, use:
-```
-docker-compose up -d --build
-docker run -i ganho-capital-cli < nome_arquivo.txt
-```
-
-
-### **Com input manual**
 Para rodar o projeto fazendo input manualmente  rode os seguintes comandos:
 ```
-docker compose up -d --build
 docker run -i ganho-capital-cli
 ```
 
-Se a sua versão do docker-compose for mais antiga, use:
+### **Utilizando poetry**
+Para rodar o projeto com poetry, é necessário ter ele instalado na sua máquina, caso não tenha, siga as instruções dos links:
+[Install Poetry](https://python-poetry.org/docs/#:~:text=To%20uninstall%20Poetry%2C%20simply%20delete%20the%20entire%20%24VENV_PATH%20directory.)
+
+
+Comece criando sua env e instalando suas dependencias:
 ```
-docker-compose up -d --build
-docker run -i ganho-capital-cli
+poetry install
+```
+
+Em seguida use o comando:
+```
+poetry run python -m system
+```
+
+Para rodar o projeto utilizando um arquivo, inclua o arquivo na root do projeto em seguida rode os seguintes comandos:
+```
+poetry run python -m system < nome_arquivo.txt
 ```
