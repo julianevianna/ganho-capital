@@ -317,32 +317,28 @@ Para rodar o projeto, é necessário ter o docker instalado na sua máquina, cas
 - **Windows:** [Install Docker Engine on Windows](https://docs.docker.com/desktop/install/windows-install/)
 
 ### **Com arquivo**
-Para rodar o projeto utilizando um arquivo, inclua o arquivo na root do projeto e adicione o nome do aquivo em uma variável de ambiente chamada INPUT_FILE dentro do docker-compose.yml.
-
-Em seguida rode os seguintes comandos:
+Para rodar o projeto utilizando um arquivo, inclua o arquivo na root do projeto em seguida rode os seguintes comandos:
 ```
 docker compose up -d --build
-docker compose run cli
+docker run -i ganho-capital-cli < nome_arquivo.txt
 ```
 
 Se a sua versão do docker-compose for mais antiga, use:
 ```
 docker-compose up -d --build
-docker-compose run cli
+docker run -i ganho-capital-cli < nome_arquivo.txt
 ```
 
 
 ### **Com input manual**
-Para rodar o projeto fazendo input manualmente, exclua a sessão **environment** dentro do docker-compose.yml.
-
-Em seguida rode os seguintes comandos:
+Para rodar o projeto fazendo input manualmente  rode os seguintes comandos:
 ```
 docker compose up -d --build
-docker compose run cli
+docker run -i ganho-capital-cli
 ```
 
 Se a sua versão do docker-compose for mais antiga, use:
 ```
 docker-compose up -d --build
-docker-compose run cli
+docker run -i ganho-capital-cli
 ```

@@ -1,27 +1,28 @@
+import json
 import sys
 from typing import Dict, List
+
+from system.adapter_entrypoints.cli.cli_entrypoint import CLIHandler
+from system.application.dto.operation_list_input import (
+    OperationInput,
+    OperationsListInput,
+)
 
 
 class CliHandler:
     @staticmethod
-    def cli_json_from_user() -> List[Dict]:
-        lines: List[Dict] = []
-        while True:
-            line = sys.stdin.readline().strip()
-            if line == "":
+    def cli_json_from_user() -> List[Dict]:  # type: ignore
+        for line in sys.stdin:
+            if line.strip() == "":
                 break
-            if line.lower() == "sair":
-                exit(0)
-            lines.append(line)  # type: ignore
-        return lines
-
-    @staticmethod
-    def read_input_from_file(file_path) -> List[Dict]:
-        lines: List[Dict] = []
-        with open(file_path, "r") as file:
-            for line in file:
-                line = line.strip()
-                if line.lower() == "sair":
-                    return lines
-                lines.append(line)  # type: ignore
-        return lines
+            operation_list_input_cli = json.loads(line)
+            operation_list_input = OperationsListInput(
+                operation_list=[
+                    OperationInput(**operation)
+                    for operation in operation_list_input_cli
+                ],
+            )
+            cli_handler_output = CLIHandler().operations_list_input(
+                operation_list_input,
+            )
+            print(cli_handler_output)

@@ -23,6 +23,20 @@ profile = "black"
 multi_line_output = 3
 src_paths = ["system",]
 
+[tool.coverage.run]
+branch = true
+include = [
+    "system/adapter_entrypoints/cli*",
+    "system/application/usecase/*",
+    "system/application/dto/*",
+    "system/domain/entities/*",
+    "system/domain/value_objects/*",
+]
+omit = ["*__.py", "system/application/usecases/usecase.py"]
+[tool.coverage.report]
+fail_under = 80
+sort = "-Cover"
+
 
 [build-system]
 requires = ["poetry-core"]
