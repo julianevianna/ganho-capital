@@ -9,8 +9,8 @@ from system.application.enums.operation_type_enum import OperationTypeEnum
 
 class OperationInput(Input):
     operation: OperationTypeEnum
-    unit_cost: Decimal = Field(..., alias="unit-cost")
-    quantity: int
+    unit_cost: Decimal = Field(..., alias="unit-cost", ge=Decimal("0.00"))  # type: ignore
+    quantity: int = Field(..., ge=0)
 
     @validator("unit_cost", pre=True)
     def check_unit_cost(cls, v):

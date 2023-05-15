@@ -167,3 +167,31 @@ def test_input_fields_round_decimals_sucess(
     )
 
     test_case.assertEqual(operation_list_input, mock_operations_list_input_sucess)
+
+
+def test_input_fields_negative_unit_cost_fail(
+    mock_operations_list_cli_negative_unit_cost: List[Dict],
+):
+    test_case = TestCase()
+
+    with test_case.assertRaises(ValidationError):
+        OperationsListInput(
+            operation_list=[
+                OperationInput.parse_obj(operation)
+                for operation in mock_operations_list_cli_negative_unit_cost
+            ],
+        )
+
+
+def test_input_fields_negative_quantity_fail(
+    mock_operations_list_cli_negative_quantity: List[Dict],
+):
+    test_case = TestCase()
+
+    with test_case.assertRaises(ValidationError):
+        OperationsListInput(
+            operation_list=[
+                OperationInput.parse_obj(operation)
+                for operation in mock_operations_list_cli_negative_quantity
+            ],
+        )

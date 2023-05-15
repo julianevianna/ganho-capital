@@ -348,3 +348,43 @@ def mock_taxes_list_output_round_decimals_sucess() -> TaxesListOutput:
     taxes_list.append(Decimal("11.09"))
 
     return TaxesListOutput(taxes=taxes_list)
+
+
+@pytest.fixture
+def mock_operations_list_cli_negative_unit_cost() -> List[Dict]:
+    operations_list = []
+
+    operations_list.append(
+        {"operation": "buy", "unit-cost": -10.00, "quantity": 10000},
+    )
+    operations_list.append(
+        {"operation": "sell", "unit-cost": -20.00, "quantity": 5000},
+    )
+    operations_list.append(
+        {"operation": "buy", "unit-cost": -20.00, "quantity": 10000},
+    )
+    operations_list.append(
+        {"operation": "sell", "unit-cost": -10.00, "quantity": 5000},
+    )
+
+    return operations_list
+
+
+@pytest.fixture
+def mock_operations_list_cli_negative_quantity() -> List[Dict]:
+    operations_list = []
+
+    operations_list.append(
+        {"operation": "buy", "unit-cost": 10.00, "quantity": -10000},
+    )
+    operations_list.append(
+        {"operation": "sell", "unit-cost": 20.00, "quantity": -5000},
+    )
+    operations_list.append(
+        {"operation": "buy", "unit-cost": 20.00, "quantity": -10000},
+    )
+    operations_list.append(
+        {"operation": "sell", "unit-cost": 10.00, "quantity": -5000},
+    )
+
+    return operations_list
