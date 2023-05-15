@@ -190,7 +190,10 @@ Nessa entidade temos uma generalização de operação, contendo os dados básic
 
 |OperationCapitalGain(Operation)|
 |--------------|
-|operations_total_quantity: int = 0|
+|operations_total_quantity: int|
+|operation_weighted_average_price: float|
+|new_operations_total_quantity: int|
+|new_operation_weighted_average_price: int|
 |tax: Tax|
 
 Nessa entidade temos uma filha de operação, específica para utilização para o ganho de capital.
@@ -199,7 +202,7 @@ Nessa entidade temos uma filha de operação, específica para utilização para
 |BuyOperationCapitalGain(OperationCapitalGain)|
 |--------------|
 
-Nessa entidade temos uma filha de operação de ganho de capital, específica para compra, podendo incluir especificações de compra caso necessário sem alteração das classes mães.
+Nessa entidade temos uma filha de operação de ganho de capital, específica para compra, contendo especificações de compra sem alteração das classes mãe.
 <br><br>
 
 |sellOperationCapitalGain(OperationCapitalGain)|
@@ -208,7 +211,7 @@ Nessa entidade temos uma filha de operação de ganho de capital, específica pa
 |total_value: float|
 |previous_loss: Optional[float]|
 
-Nessa entidade temos uma filha de operação de ganho de capital, específica para venda, podendo incluir especificações de compra caso necessário sem alteração das classes mães.
+Nessa entidade temos uma filha de operação de ganho de capital, específica para venda, contendo especificações de venda sem alteração das classes mãe.
 <br><br>
 
 ### **Objetos de valor**
@@ -226,7 +229,7 @@ Nessa entidade temos uma filha de operação de ganho de capital, específica pa
 |total_value: float|
 |returns: float|
 
-Nesse objeto de valor, temos uma generalização para o resultado de uma operação, podendo ser positivo (Lucro) ou negativo (Prejuízo) a partir das informações de preço médio, quantidade, valor total da operação, prejuízo (caso exista) e o valor do resultado. Foi criado como objeto de valor a fim de ser uma propriedade padrão para resultado idependentemente de sua aplicação.
+Nesse objeto de valor, temos uma generalização para o resultado de uma operação, podendo ser positivo (Lucro) ou negativo (Prejuízo) a partir das informações de preço médio, quantidade, valor total da operação, e o valor do resultado. Foi criado como objeto de valor a fim de ser uma propriedade padrão para resultado idependentemente de sua aplicação.
 <br><br>
 
 |Tax|
@@ -384,3 +387,13 @@ Para ver o relatorio do coverage basta rodar o seguinte comando:
 poetry run coverage report
 
 ```
+<br><br><br>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+## **Informações adicionais**
+
+O projeto foi feito com bastante carinho, usando todas as boas práticas utilizadas no dia a dia de trabalho, com o objetivo de ficar facilmente entendível, com as obgrigações de todas as classes e métodos bem segregadas, possibilitando assim a extensão do projeto se possível, da maneira mais simples possível, porém focando em uma boa estruturação.
+
+**Agradecimento especial** ao chat gpt que me acompanhou nessa jornada! <3
+
+Agradeço a você que leu até aqui, espero que tenha sido um projeto divertido de acompanhar e avaliar!
