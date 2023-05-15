@@ -141,3 +141,20 @@ def test_taxes_from_operations_list_case_8_sucess(
     )
 
     test_case.assertEqual(expected_result, result)
+
+
+def test_taxes_from_operations_list_case_9_sucess(
+    mock_operations_list_input_case_9_sucess: OperationsListInput,
+    mock_taxes_list_output_case_9_sucess: TaxesListOutput,
+) -> None:
+    test_case = TestCase()
+
+    expected_result: TaxesListOutput = mock_taxes_list_output_case_9_sucess
+
+    taxes_from_operations_list_usecase = TaxesFromOperationsListUsecase()
+
+    result = taxes_from_operations_list_usecase.execute(
+        mock_operations_list_input_case_9_sucess,
+    )
+
+    test_case.assertEqual(expected_result, result)

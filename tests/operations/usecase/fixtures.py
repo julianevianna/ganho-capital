@@ -321,3 +321,75 @@ def mock_taxes_list_output_case_8_sucess():
             Decimal("60000.00"),
         ],
     )
+
+
+@pytest.fixture
+def mock_operations_list_input_case_9_sucess() -> OperationsListInput:
+    operations_list_from_cli: List[OperationInput] = []
+
+    operations_list_from_cli.append(
+        OperationInput(
+            **{"operation": "buy", "unit-cost": Decimal("10.00"), "quantity": 10000}
+        ),
+    ),
+    operations_list_from_cli.append(
+        OperationInput(
+            **{"operation": "sell", "unit-cost": Decimal("2.00"), "quantity": 5000}
+        ),
+    ),
+    operations_list_from_cli.append(
+        OperationInput(
+            **{"operation": "sell", "unit-cost": Decimal("20.00"), "quantity": 2000}
+        ),
+    ),
+    operations_list_from_cli.append(
+        OperationInput(
+            **{"operation": "sell", "unit-cost": Decimal("2.00"), "quantity": 2000}
+        ),
+    ),
+    operations_list_from_cli.append(
+        OperationInput(
+            **{"operation": "sell", "unit-cost": Decimal("25.00"), "quantity": 1000}
+        ),
+    ),
+    operations_list_from_cli.append(
+        OperationInput(
+            **{"operation": "buy", "unit-cost": Decimal("20.00"), "quantity": 10000}
+        ),
+    ),
+    operations_list_from_cli.append(
+        OperationInput(
+            **{"operation": "sell", "unit-cost": Decimal("15.00"), "quantity": 5000}
+        ),
+    ),
+    operations_list_from_cli.append(
+        OperationInput(
+            **{"operation": "sell", "unit-cost": Decimal("30.00"), "quantity": 4350}
+        ),
+    ),
+    operations_list_from_cli.append(
+        OperationInput(
+            **{"operation": "sell", "unit-cost": Decimal("30.00"), "quantity": 650}
+        ),
+    ),
+
+    operations_list_input = OperationsListInput(operation_list=operations_list_from_cli)
+
+    return operations_list_input
+
+
+@pytest.fixture
+def mock_taxes_list_output_case_9_sucess():
+    return TaxesListOutput(
+        taxes=[
+            Decimal("0.00"),
+            Decimal("0.00"),
+            Decimal("0.00"),
+            Decimal("0.00"),
+            Decimal("0.00"),
+            Decimal("0.00"),
+            Decimal("0.00"),
+            Decimal("0.00"),
+            Decimal("0.00"),
+        ],
+    )

@@ -396,6 +396,4 @@ O projeto foi feito com bastante carinho, usando todas as boas práticas utiliza
 
 A documentação foi montada com o objetivo de fazer um resumo de todos os tópicos pensados, analizados e utilizados para o desenvolvimento do programa, porém de forma resumida para que não fique maçante demais.
 
-**Agradecimento especial** ao chat gpt que me acompanhou nessa jornada! <3
-
 Agradeço a você que leu até aqui, espero que tenha sido um projeto divertido de acompanhar e avaliar!

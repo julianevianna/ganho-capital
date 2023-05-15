@@ -97,7 +97,7 @@ class TaxesFromOperationsListUsecase(UseCase):
         returns_value: Decimal = Decimal("0.00"),
     ):
         if returns_value < 0:
-            previous_loss = -returns_value
+            previous_loss = previous_loss - returns_value
         elif previous_loss > 0 and returns_value > 0:
             previous_loss -= returns_value
         else:
