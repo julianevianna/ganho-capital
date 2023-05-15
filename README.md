@@ -273,6 +273,7 @@ Validador de tipagem
 
 - **Yesqa:**
 Remove automaticamente comentários # noqa desnecessários
+<br><br><br>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 ## **Arquitetura**
@@ -301,6 +302,7 @@ A arquitetura limpa é composta por várias camadas, que geralmente incluem:
 A escolha da arquitetura limpa foi pensada por dois motivos.
 - Por ela ser uma arquitetura com um fraco acoplamento entre as camadas, ela facilita a manutenção e também a escalabilidade do sistema, por esse desafio poder ser estendido futuramente, ela se faz uma boa opção, permitindo uma facilidade para inclusão de novas features.
 - Também foi escolhida por ser a arquitetura que estou utilizando atualmente, agilizando assim o desenvolvimento baseado no prazo de entrega do projeto.
+<br><br><br>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 ## **Dockerização**
@@ -308,6 +310,7 @@ A escolha da arquitetura limpa foi pensada por dois motivos.
 O projeto foi dockerizado, com o objetivo de facilitar a utilização em qualquer máquina.
 
 Temos um único container (*cli*), que é utilizado para suir a aplicação baseada no docker-compose e um Dockerfile que faz todas as configurações de ambiente para o projeto.
+<br><br><br>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 ## **Como rodar o projeto**
@@ -356,4 +359,28 @@ poetry run python -m system
 Para rodar o projeto utilizando um arquivo, inclua o arquivo na root do projeto em seguida rode os seguintes comandos:
 ```
 poetry run python -m system < nome_arquivo.txt
+```
+<br><br><br>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+## **TDD**
+O projeto foi feito utilizando a estratégia de desenvolvimento de Test-Driven Development, que se baseia em um ciclo curto de repetições que consiste em Escrever o teste, Escrever o código e Refatorar o código.
+
+Os testes foram criados em cima dos critérios de aceite deifinidos acima, que foram montados de acordo com a documentação do challange.
+
+Para rodar o testes utilize o comando:
+```
+poetry run pytest
+
+#OU
+
+poetry run pytest -vvv
+```
+
+Também foi utilizada a biblioteca coverage para testes em python para ver a cobertura dos testes automatizados.
+
+Para ver o relatorio do coverage basta rodar o seguinte comando:
+```
+poetry run coverage report
+
 ```
