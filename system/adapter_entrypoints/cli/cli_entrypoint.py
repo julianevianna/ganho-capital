@@ -5,7 +5,7 @@ from system.application.usecases.operations.taxes_from_operations_list_usecase i
 )
 
 
-class CLIHandler:
+class CLIEntryPoint:
     def operations_list_input(
         self,
         operation_list: OperationsListInput,

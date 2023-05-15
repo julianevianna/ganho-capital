@@ -2,7 +2,7 @@ import json
 import sys
 from typing import Dict, List
 
-from system.adapter_entrypoints.cli.cli_entrypoint import CLIHandler
+from system.adapter_entrypoints.cli.cli_entrypoint import CLIEntryPoint
 from system.application.dto.operation_list_input import (
     OperationInput,
     OperationsListInput,
@@ -22,7 +22,7 @@ class CliHandler:
                     for operation in operation_list_input_cli
                 ],
             )
-            cli_handler_output = CLIHandler().operations_list_input(
+            cli_handler_output = CLIEntryPoint().operations_list_input(
                 operation_list_input,
             )
             print(cli_handler_output)
