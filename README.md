@@ -394,6 +394,8 @@ poetry run coverage report
 
 O projeto foi feito com bastante carinho, usando todas as boas práticas utilizadas no dia a dia de trabalho, com o objetivo de ficar facilmente entendível, com as obgrigações de todas as classes e métodos bem segregadas, possibilitando assim a extensão do projeto se possível, da maneira mais simples possível, porém focando em uma boa estruturação.
 
+A documentação foi montada com o objetivo de fazer um resumo de todos os tópicos pensados, analizados e utilizados para o desenvolvimento do programa, porém de forma resumida para que não fique maçante demais.
+
 **Agradecimento especial** ao chat gpt que me acompanhou nessa jornada! <3
 
 Agradeço a você que leu até aqui, espero que tenha sido um projeto divertido de acompanhar e avaliar!
