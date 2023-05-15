@@ -1,3 +1,4 @@
+import json
 from decimal import ROUND_HALF_UP, Decimal
 from typing import List
 
@@ -21,3 +22,6 @@ class TaxesListOutput(Output):
             )
 
         return value
+
+    def __str__(self):
+        return json.dumps([{"tax": float("{:.2f}".format(x))} for x in self.taxes])

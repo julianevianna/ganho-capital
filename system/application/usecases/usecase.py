@@ -10,21 +10,3 @@ class UseCase(metaclass=ABCMeta):
         Sync UseCase method that has a input object and returns a output
         """
         raise NotImplementedError()
-
-
-class UseCaseNoOutput(metaclass=ABCMeta):
-    @abstractmethod
-    def execute(self, input_usecase) -> None:  # type: ignore[no-untyped-def]
-        """
-        Sync UseCase method that has a input object and doesnt return a output
-        """
-        raise NotImplementedError()
-
-
-class UseCaseNoInput(metaclass=ABCMeta):
-    @abstractmethod
-    def execute(self) -> Output:  # type: ignore[no-untyped-def]
-        """
-        Sync UseCase method that doesnt have a input object and returns a output
-        """
-        raise NotImplementedError()
