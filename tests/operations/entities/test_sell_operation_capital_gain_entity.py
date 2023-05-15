@@ -127,7 +127,7 @@ def test_return_sell_operation_profit_with_previous_loss_resulting_loss_sucess(
 
     test_case.assertEqual(
         mock_sell_profit_with_previous_loss_resulting_loss_operation.returns.returns,
-        Decimal("-50000.00"),
+        Decimal("50000.00"),
     )
 
 
@@ -149,7 +149,7 @@ def test_return_sell_operation_profit_with_previous_loss_resulting_zero_sucess(
 
     test_case.assertEqual(
         mock_sell_profit_with_previous_loss_resulting_zero_operation.returns.returns,
-        Decimal("0.00"),
+        Decimal("50000.00"),
     )
 
 
@@ -171,7 +171,7 @@ def test_return_sell_operation_profit_with_previous_loss_resulting_non_minimum_p
 
     test_case.assertEqual(
         mock_sell_profit_with_previous_loss_resulting_non_minimum_profit_operation.returns.returns,
-        Decimal("10000.00"),
+        Decimal("50000.00"),
     )
 
 
@@ -182,7 +182,7 @@ def test_tax_sell_operation_profit_with_previous_loss_resulting_non_minimum_prof
 
     test_case.assertEqual(
         mock_sell_profit_with_previous_loss_resulting_non_minimum_profit_operation.tax.tax_value,
-        Decimal("0.00"),
+        Decimal("2000.00"),
     )
 
 

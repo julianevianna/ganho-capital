@@ -28,6 +28,16 @@ class SellOperationCapitalGainEntity(OperationCapitalGainEntity):
         return values
 
     @root_validator(pre=True)
+    def default_previous_loss(
+        cls,
+        values,
+    ) -> Decimal:
+        if "previous_loss" not in values or values["previous_loss"] is None:
+            values["previous_loss"] = Decimal("0.00")
+
+        return values
+
+    @root_validator(pre=True)
     def default_total_value(
         cls,
         values,
@@ -64,17 +74,17 @@ class SellOperationCapitalGainEntity(OperationCapitalGainEntity):
             average_price=values["operation_weighted_average_price"],
             quantity=values["quantity"],
             total_value=values["total_value"],
-            previous_loss=values["previous_loss"]
-            if "previous_loss" in values
-            else None,
         )  # type: ignore
 
         return values
 
     @root_validator(pre=True)
     def default_tax(cls, values) -> TaxValueObject:
-        if values["returns"].returns > Decimal("20000.00"):
-            returns_value = values["returns"].returns
+        if (
+            values["total_value"] > Decimal("20000.00")
+            and values["returns"].returns - values["previous_loss"] > 0
+        ):
+            returns_value = values["returns"].returns - values["previous_loss"]
         else:
             returns_value = Decimal("0.00")
 

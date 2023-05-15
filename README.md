@@ -175,8 +175,6 @@ Como no challange temos um objetivo muito bem definido, que é o Ganho de capita
 |OperationsList|
 |--------------|
 |operations: List [OperationCapitalGain]|
-|tax_rate: float|
-|weighted_average_price_list: List[float]|
 
 Essa é a entidade que irá tratar do conjunto de operações realizados a cada entrada, contendo todas as informações passadas na entranda, assim como os seus impostos calculados.
 <br><br>
@@ -226,7 +224,6 @@ Nessa entidade temos uma filha de operação de ganho de capital, específica pa
 |average_price: float|
 |quantity: float|
 |total_value: float|
-|previous_loss: Optional[float]|
 |returns: float|
 
 Nesse objeto de valor, temos uma generalização para o resultado de uma operação, podendo ser positivo (Lucro) ou negativo (Prejuízo) a partir das informações de preço médio, quantidade, valor total da operação, prejuízo (caso exista) e o valor do resultado. Foi criado como objeto de valor a fim de ser uma propriedade padrão para resultado idependentemente de sua aplicação.
