@@ -141,7 +141,7 @@ quantidade-de-acoes-compradas)
 
 **Então** o prejuízo deverá ser subtraido do lucro obtido
 
-**E** se o resultado ainda for positivo o imposto de 20% deve ser aplicado
+**E** se o resultado ainda for positivo e maior que R$20.000,00 o imposto de 20% deve ser aplicado
 
 **OU** se o resultado for zero o imposto será zero
 
@@ -175,8 +175,6 @@ Como no challange temos um objetivo muito bem definido, que é o Ganho de capita
 |OperationsList|
 |--------------|
 |operations: List [OperationCapitalGain]|
-|tax_rate: float|
-|weighted_average_price: float|
 
 Essa é a entidade que irá tratar do conjunto de operações realizados a cada entrada, contendo todas as informações passadas na entranda, assim como os seus impostos calculados.
 <br><br>
@@ -192,7 +190,11 @@ Nessa entidade temos uma generalização de operação, contendo os dados básic
 
 |OperationCapitalGain(Operation)|
 |--------------|
-|operations_total_quantity: int = 0|
+|operations_total_quantity: int|
+|operation_weighted_average_price: float|
+|new_operations_total_quantity: int|
+|new_operation_weighted_average_price: int|
+|tax: Tax|
 
 Nessa entidade temos uma filha de operação, específica para utilização para o ganho de capital.
 <br><br>
@@ -200,16 +202,16 @@ Nessa entidade temos uma filha de operação, específica para utilização para
 |BuyOperationCapitalGain(OperationCapitalGain)|
 |--------------|
 
-Nessa entidade temos uma filha de operação de ganho de capital, específica para compra, podendo incluir especificações de compra caso necessário sem alteração das classes mães.
+Nessa entidade temos uma filha de operação de ganho de capital, específica para compra, contendo especificações de compra sem alteração das classes mãe.
 <br><br>
 
 |sellOperationCapitalGain(OperationCapitalGain)|
 |--------------|
-|return: Return|
-|tax: Tax|
+|returns: Return|
 |total_value: float|
+|previous_loss: Optional[float]|
 
-Nessa entidade temos uma filha de operação de ganho de capital, específica para venda, podendo incluir especificações de compra caso necessário sem alteração das classes mães.
+Nessa entidade temos uma filha de operação de ganho de capital, específica para venda, contendo especificações de venda sem alteração das classes mãe.
 <br><br>
 
 ### **Objetos de valor**
@@ -220,15 +222,14 @@ Nessa entidade temos uma filha de operação de ganho de capital, específica pa
 <br><br>
 
 
-|Return|
+|Returns|
 |--------------|
 |average_price: float|
 |quantity: float|
 |total_value: float|
-|loss: Optional[float]|
-|return: float|
+|returns: float|
 
-Nesse objeto de valor, temos uma generalização para o resultado de uma operação, podendo ser positivo (Lucro) ou negativo (Prejuízo) a partir das informações de preço médio, quantidade, valor total da operação, prejuízo (caso exista) e o valor do resultado. Foi criado como objeto de valor a fim de ser uma propriedade padrão para resultado idependentemente de sua aplicação.
+Nesse objeto de valor, temos uma generalização para o resultado de uma operação, podendo ser positivo (Lucro) ou negativo (Prejuízo) a partir das informações de preço médio, quantidade, valor total da operação, e o valor do resultado. Foi criado como objeto de valor a fim de ser uma propriedade padrão para resultado idependentemente de sua aplicação.
 <br><br>
 
 |Tax|
@@ -253,6 +254,8 @@ Framework para escrita de testes unitários em python.
 ### **Covarage**
 O Coverage.py é uma ferramenta para medir a cobertura de código de programas em Python.
 
+### **Pydantic**
+Pydantic é uma biblioteca de Python usada para validação de dados.
 
 ### **Pre-commit**
 
@@ -273,6 +276,7 @@ Validador de tipagem
 
 - **Yesqa:**
 Remove automaticamente comentários # noqa desnecessários
+<br><br><br>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 ## **Arquitetura**
@@ -301,6 +305,7 @@ A arquitetura limpa é composta por várias camadas, que geralmente incluem:
 A escolha da arquitetura limpa foi pensada por dois motivos.
 - Por ela ser uma arquitetura com um fraco acoplamento entre as camadas, ela facilita a manutenção e também a escalabilidade do sistema, por esse desafio poder ser estendido futuramente, ela se faz uma boa opção, permitindo uma facilidade para inclusão de novas features.
 - Também foi escolhida por ser a arquitetura que estou utilizando atualmente, agilizando assim o desenvolvimento baseado no prazo de entrega do projeto.
+<br><br><br>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 ## **Dockerização**
@@ -308,41 +313,87 @@ A escolha da arquitetura limpa foi pensada por dois motivos.
 O projeto foi dockerizado, com o objetivo de facilitar a utilização em qualquer máquina.
 
 Temos um único container (*cli*), que é utilizado para suir a aplicação baseada no docker-compose e um Dockerfile que faz todas as configurações de ambiente para o projeto.
+<br><br><br>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 ## **Como rodar o projeto**
-Para rodar o projeto, é necessário ter o docker instalado na sua máquina, caso não tenha, siga as instruções dos links:
+
+
+### **Utilizando Docker**
+Para rodar o projeto com docker, é necessário ter ele instalado na sua máquina, caso não tenha, siga as instruções dos links:
 - **Ubuntu:** [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 - **Mac:** [Install Docker Engine on Mac](https://docs.docker.com/desktop/install/mac-install/)
 - **Windows:** [Install Docker Engine on Windows](https://docs.docker.com/desktop/install/windows-install/)
 
-### **Com arquivo**
-Para rodar o projeto utilizando um arquivo, inclua o arquivo na root do projeto e adicione o nome do aquivo em uma variável de ambiente chamada INPUT_FILE dentro do docker-compose.yml.
-
-Em seguida rode os seguintes comandos:
+Comece buildando e subindo seu container:
 ```
 docker compose up -d --build
-docker compose run cli
 ```
 
 Se a sua versão do docker-compose for mais antiga, use:
 ```
 docker-compose up -d --build
-docker-compose run cli
+```
+Para rodar o projeto utilizando um arquivo, inclua o arquivo na root do projeto em seguida rode os seguintes comandos:
+```
+docker run -i ganho-capital-cli < nome_arquivo.txt
 ```
 
-
-### **Com input manual**
-Para rodar o projeto fazendo input manualmente, exclua a sessão **environment** dentro do docker-compose.yml.
-
-Em seguida rode os seguintes comandos:
+Para rodar o projeto fazendo input manualmente  rode os seguintes comandos:
 ```
-docker compose up -d --build
-docker compose run cli
+docker run -i ganho-capital-cli
 ```
 
-Se a sua versão do docker-compose for mais antiga, use:
+### **Utilizando poetry**
+Para rodar o projeto com poetry, é necessário ter ele instalado na sua máquina, caso não tenha, siga as instruções dos links:
+[Install Poetry](https://python-poetry.org/docs/#:~:text=To%20uninstall%20Poetry%2C%20simply%20delete%20the%20entire%20%24VENV_PATH%20directory.)
+
+
+Comece criando sua env e instalando suas dependencias:
 ```
-docker-compose up -d --build
-docker-compose run cli
+poetry install
 ```
+
+Em seguida use o comando:
+```
+poetry run python -m system
+```
+
+Para rodar o projeto utilizando um arquivo, inclua o arquivo na root do projeto em seguida rode os seguintes comandos:
+```
+poetry run python -m system < nome_arquivo.txt
+```
+<br><br><br>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+## **TDD**
+O projeto foi feito utilizando a estratégia de desenvolvimento de Test-Driven Development, que se baseia em um ciclo curto de repetições que consiste em Escrever o teste, Escrever o código e Refatorar o código.
+
+Os testes foram criados em cima dos critérios de aceite deifinidos acima, que foram montados de acordo com a documentação do challange.
+
+Para rodar o testes utilize o comando:
+```
+poetry run pytest
+
+#OU
+
+poetry run pytest -vvv
+```
+
+Também foi utilizada a biblioteca coverage para testes em python para ver a cobertura dos testes automatizados.
+
+Para ver o relatorio do coverage basta rodar o seguinte comando:
+```
+poetry run coverage report
+
+```
+<br><br><br>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+## **Informações adicionais**
+
+O projeto foi feito com bastante carinho, usando todas as boas práticas utilizadas no dia a dia de trabalho, com o objetivo de ficar facilmente entendível, com as obgrigações de todas as classes e métodos bem segregadas, possibilitando assim a extensão do projeto se possível, da maneira mais simples possível, porém focando em uma boa estruturação.
+
+A documentação foi montada com o objetivo de fazer um resumo de todos os tópicos pensados, analizados e utilizados para o desenvolvimento do programa, porém de forma resumida para que não fique maçante demais.
+
+Agradeço a você que leu até aqui, espero que tenha sido um projeto divertido de acompanhar e avaliar!
